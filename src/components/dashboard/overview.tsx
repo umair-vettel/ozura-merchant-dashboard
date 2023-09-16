@@ -15,18 +15,18 @@ const data = [
   //   name: "Mar",
   //   total: Math.floor(Math.random() * 5000) + 1000,
   // },
-  // {
-  //   name: "Apr",
-  //   total: Math.floor(Math.random() * 5000) + 1000,
-  // },
-  // {
-  //   name: "May",
-  //   total: Math.floor(Math.random() * 5000) + 1000,
-  // },
-  // {
-  //   name: "Jun",
-  //   total: Math.floor(Math.random() * 5000) + 1000,
-  // },
+  {
+    name: "Apr",
+    total: Math.floor(Math.random() * 5000) + 1000,
+  },
+  {
+    name: "May",
+    total: Math.floor(Math.random() * 5000) + 1000,
+  },
+  {
+    name: "Jun",
+    total: Math.floor(Math.random() * 5000) + 1000,
+  },
   {
     name: "Jul",
     total: Math.floor(Math.random() * 5000) + 1000,

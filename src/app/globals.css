@@ -105,13 +105,14 @@
     --muted-foreground: 217.9 10.6% 64.9%;
     --accent: 256, 31%, 15%;
     --accent-foreground: 210 20% 98%;
-    --destructive: 0 62.8% 30.6%;
+    --destructive: 0 99% 40.6%;
     --destructive-foreground: 210 20% 98%;
     --border: 0, 0%, 40%;
     --input: 0, 0%, 40%;
     --ring: 0, 0%, 40%;
     --radius: 0.4rem;
     --hover: 0, 0%, 40%;
+    --ozura: 257, 31%, 19%;
   }
 }
 
