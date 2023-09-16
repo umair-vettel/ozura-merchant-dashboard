@@ -25,6 +25,7 @@ import { DataTableColumnHeader } from "@/components/ui/DataTableColumnHeader";
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
 export type Payment = {
+  id: number;
   merchantId: string;
   quoteId: string;
   paymentMode: string;
@@ -33,6 +34,10 @@ export type Payment = {
 };
 
 export const columns: ColumnDef<Payment>[] = [
+  {
+    accessorKey: "id",
+    header: "ID",
+  },
   {
     accessorKey: "merchantId",
     header: "Merchant ID",
