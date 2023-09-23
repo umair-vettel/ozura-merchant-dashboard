@@ -1,7 +1,7 @@
 import { Payment, columns } from "./columns";
 import { DataTable } from "@components/ui/data-table";
 import { Metadata } from "next";
-
+import TransactionsPage from "./transactions";
 async function getData(): Promise<Payment[]> {
   // Fetch data from your API here.
   return [
@@ -364,16 +364,11 @@ export const metadata: Metadata = {
 };
 
 export default async function DemoPage() {
-  const data = await getData();
+  //const data = await getData();
 
   return (
     <>
-      <div className="flex items-center justify-between space-y-2">
-        <h2 className="text-3xl font-bold tracking-tight">Transactions</h2>
-      </div>
-      <div className=" mx-auto ">
-        <DataTable columns={columns} data={data} />
-      </div>
+      <TransactionsPage />
     </>
   );
 }
