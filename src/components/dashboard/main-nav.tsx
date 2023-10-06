@@ -14,10 +14,10 @@ const navItems = [
     title: "Transactions",
     href: "/transactions",
   },
-  // {
-  //   title: "Product",
-  //   href: "/profile/appearance",
-  // },
+  {
+    title: "Payment Links",
+    href: "/widgets",
+  },
   // {
   //   title: "Settings",
   //   href: "/profile/account",
@@ -43,8 +43,8 @@ export function MainNav({
           href={item.href}
           className={cn(
             pathname === item.href
-              ? "text-sm font-medium transition-colors hover:text-primary"
-              : "text-sm font-medium text-muted-foreground transition-colors hover:text-primary",
+              ? "text-sm font-medium transition-colors hover:text-primary whitespace-nowrap"
+              : "text-sm font-medium text-muted-foreground transition-colors whitespace-nowrap hover:text-primary",
             "justify-start"
           )}
         >

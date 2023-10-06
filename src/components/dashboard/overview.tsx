@@ -1,6 +1,13 @@
 "use client";
 
-import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis } from "recharts";
+import {
+  Bar,
+  BarChart,
+  ResponsiveContainer,
+  Tooltip,
+  XAxis,
+  YAxis,
+} from "recharts";
 
 const data = [
   // {
@@ -56,8 +63,30 @@ const data = [
 export function Overview() {
   return (
     <div className="max-w-[100%]">
-      <ResponsiveContainer width="99%" height={350}>
+      <ResponsiveContainer width="99%" height={450}>
         <BarChart data={data}>
+          {/* <Tooltip
+            content={({ active, payload }) => {
+              if (active && payload && payload.length) {
+                return (
+                  <div className="rounded-lg border bg-background p-2 ">
+                    <div className="grid grid-cols-2 gap-2">
+                      <div className="flex flex-col">
+                        <span className="text-[0.70rem] uppercase text-muted-foreground">
+                          Average
+                        </span>
+                        <span className="font-bold text-muted-foreground">
+                          {payload[0].value}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                );
+              }
+
+              return null;
+            }}
+          /> */}
           <XAxis
             dataKey="name"
             stroke="#888888"

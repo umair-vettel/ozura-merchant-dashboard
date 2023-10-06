@@ -37,8 +37,8 @@ export function UserNav() {
               </p>
             </div>
           </DropdownMenuLabel>
-          <DropdownMenuSeparator />
-          <DropdownMenuGroup>
+          {/* <DropdownMenuSeparator /> */}
+          <DropdownMenuGroup className="space-y-2">
             <DropdownMenuItem>
               <Link href="/profile">Profile</Link>
             </DropdownMenuItem>
@@ -52,7 +52,7 @@ export function UserNav() {
             </DropdownMenuItem>
             <DropdownMenuItem>New Team</DropdownMenuItem> */}
           </DropdownMenuGroup>
-          <DropdownMenuSeparator />
+          {/* <DropdownMenuSeparator /> */}
           <DropdownMenuItem onClick={() => signOut({ callbackUrl: "/login" })}>
             Log out
           </DropdownMenuItem>
