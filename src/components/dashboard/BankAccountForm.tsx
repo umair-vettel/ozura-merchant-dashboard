@@ -23,16 +23,20 @@ import { Check, Copy, Plus } from "lucide-react";
 import { useState } from "react";
 
 const formSchema = z.object({
-  item_name: z.string().min(2, {
-    message: "Item name must be at least 2 characters.",
+  name: z.string().min(2, {
+    message: "Name must be at least 2 characters.",
   }),
-  item_cost: z.string(),
+  bank_name: z.string(),
+  account_number: z.string(),
+  ifsc_code: z.string(),
+  swift_code: z.string(),
 });
 
-const CreateWidgetForm = () => {
+type Props = {};
+
+const BankAccountForm = (props: Props) => {
   const { toast } = useToast();
   const [successMessage, setsuccessMessage] = useState(false);
-  const [file, setFile] = useState<File | null>(null);
   // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -43,7 +47,7 @@ const CreateWidgetForm = () => {
     e.preventDefault();
 
     console.log("Success:", values);
-    const { item_name, item_cost } = values;
+    const { name, account_number, ifsc_code, swift_code, bank_name } = values;
 
     console.log(values);
     setsuccessMessage(true);
@@ -64,10 +68,24 @@ const CreateWidgetForm = () => {
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
         <FormField
           control={form.control}
-          name="item_name"
+          name="bank_name"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-base">Item Name</FormLabel>
+              <FormLabel className="text-base">Bank Name</FormLabel>
+              <FormControl>
+                <Input placeholder="Bank Name" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="name"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel className="text-base">Name</FormLabel>
               <FormControl>
                 <Input placeholder="OzuraFest" {...field} />
               </FormControl>
@@ -78,36 +96,48 @@ const CreateWidgetForm = () => {
 
         <FormField
           control={form.control}
-          name="item_cost"
+          name="account_number"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-base">Item Cost(USD)</FormLabel>
+              <FormLabel className="text-base">Account Number</FormLabel>
               <FormControl>
-                <Input type="text" placeholder="255" {...field} />
+                <Input type="text" placeholder="Account Number" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
 
-        <div>
-          <Label className="text-base">Product Image</Label>
+        <FormField
+          control={form.control}
+          name="ifsc_code"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel className="text-base">IFSC Code</FormLabel>
+              <FormControl>
+                <Input type="text" placeholder="IFSC Code" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
 
-          <Input
-            id="picture"
-            type="file"
-            onChange={(e) => {
-              const selectedFile = e.target.files?.[0];
-              if (selectedFile) {
-                setFile(selectedFile);
-              }
-            }}
-            className="file:bg-[transparent] file:text-grad hover:file:bg-[transparent] border-0 mt-0"
-          />
-        </div>
+        <FormField
+          control={form.control}
+          name="swift_code"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel className="text-base">SWIFT Code</FormLabel>
+              <FormControl>
+                <Input type="text" placeholder="SWIFT Code" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
 
         <Button variant="default" size={"full"} type="submit">
-          Generate Payment Link
+          Connect Bank Account
         </Button>
 
         {successMessage ? (
@@ -133,4 +163,4 @@ const CreateWidgetForm = () => {
   );
 };
 
-export default CreateWidgetForm;
+export default BankAccountForm;

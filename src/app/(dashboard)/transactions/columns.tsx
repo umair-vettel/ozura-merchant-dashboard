@@ -28,6 +28,7 @@ export type Payment = {
   id: number;
   merchantId: string;
   quoteId: string;
+  transactionFees?: string;
   paymentMode: string;
   status: "ACCEPTED" | "REJECTED" | "COMPLETED" | "PROCESSING";
   createdAt: any;
@@ -45,6 +46,10 @@ export const columns: ColumnDef<Payment>[] = [
   {
     accessorKey: "quoteId",
     header: "Quote Id",
+  },
+  {
+    accessorKey: "transactionFees",
+    header: "Transaction Fees",
   },
 
   {

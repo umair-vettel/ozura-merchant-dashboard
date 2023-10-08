@@ -18,6 +18,10 @@ const navItems = [
     title: "Payment Links",
     href: "/widgets",
   },
+  {
+    title: "My Account",
+    href: "/account",
+  },
   // {
   //   title: "Settings",
   //   href: "/profile/account",

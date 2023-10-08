@@ -21,6 +21,8 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { DataTableColumnHeader } from "@/components/ui/DataTableColumnHeader";
+import Link from "next/link";
+import Image from "next/image";
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
@@ -30,6 +32,7 @@ export type Payment = {
   item_name: string;
   item_cost: number;
   payment_link: any;
+  item_image: string;
 };
 
 export const columns: ColumnDef<Payment>[] = [
@@ -45,6 +48,24 @@ export const columns: ColumnDef<Payment>[] = [
     accessorKey: "item_name",
     header: "Item Name",
   },
+  {
+    accessorKey: "item_image",
+    // header: "Item Image",
+    header: ({ column }) => <div className="text-center">Item Image</div>,
+    cell: ({ row }) => {
+      const imageLink: string = row.getValue("item_image");
+
+      return (
+        <Image
+          src="/avatars/02.png"
+          width={40}
+          height={40}
+          alt="product Image"
+          className="m-auto"
+        />
+      );
+    },
+  },
 
   {
     accessorKey: "item_cost",
@@ -56,6 +77,16 @@ export const columns: ColumnDef<Payment>[] = [
   {
     accessorKey: "payment_link",
     header: "Payment Link",
+    cell: ({ row }) => {
+      const plink: string = row.getValue("payment_link");
+
+      return (
+        <Link href={plink} className="font-medium">
+          {plink.slice(0, 15)}.....
+          {plink.slice(30, 42)}
+        </Link>
+      );
+    },
   },
 
   // {

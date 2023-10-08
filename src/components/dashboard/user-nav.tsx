@@ -40,7 +40,7 @@ export function UserNav() {
           {/* <DropdownMenuSeparator /> */}
           <DropdownMenuGroup className="space-y-2">
             <DropdownMenuItem>
-              <Link href="/profile">Profile</Link>
+              <Link href="/account">Account</Link>
             </DropdownMenuItem>
             {/* <DropdownMenuItem>
               Billing
