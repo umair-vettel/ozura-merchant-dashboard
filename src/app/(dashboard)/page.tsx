@@ -21,6 +21,7 @@ import ThemeSwitch from "@/components/dashboard/ThemeSwitch";
 import { DarsChart } from "@/components/dashboard/analytics/DarsChart";
 import { TransactionsChart } from "@/components/dashboard/analytics/TransactionsChart";
 import { ArrowRight, ArrowRightIcon } from "lucide-react";
+import Link from "next/link";
 import CurrencyPieChart from "@/components/dashboard/analytics/CurrencyPieChart";
 
 export const metadata: Metadata = {
@@ -162,15 +163,22 @@ export default function DashboardPage() {
           <Card className="col-span-5">
             <CardHeader className="flex flex-row justify-between items-center">
               <CardTitle>Recent Transactions</CardTitle>
-              <Button
-                variant="outline"
-                size={"default"}
-                type="submit"
-                className="flex gap-2 items-center"
-              >
+
+              {/* <Link href="/transactions" className="flex gap-2 items-center">
                 <span className="hidden md:flex"> View All</span>
                 <ArrowRightIcon size={14} />
-              </Button>
+              </Link> */}
+              <Link href="/transactions" className="flex gap-2 items-center">
+                <Button
+                  variant="outline"
+                  size={"default"}
+                  type="submit"
+                  className="flex gap-2 items-center"
+                >
+                  <span className="hidden md:flex"> View All</span>
+                  <ArrowRightIcon size={14} />
+                </Button>
+              </Link>
             </CardHeader>
             <CardContent>
               <RecentSales />
