@@ -96,9 +96,9 @@ const CreateWidgetForm = () => {
           name="processing_fee"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-base">Processing Fee</FormLabel>
+              <FormLabel className="text-base">Processing Fee %</FormLabel>
               <FormControl>
-                <Input type="text" placeholder="255" {...field} />
+                <Input type="text" placeholder="0.5" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
