@@ -126,7 +126,7 @@ export function DarsChart() {
                 }}
                 style={
                   {
-                    stroke: "#fff",
+                    stroke: "#8db9bb",
                   } as React.CSSProperties
                 }
               />

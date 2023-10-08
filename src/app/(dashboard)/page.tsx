@@ -12,7 +12,7 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { CalendarDateRangePicker } from "@/components/dashboard/date-range-picker";
 import { MainNav } from "@/components/dashboard/main-nav";
-import { Overview } from "@/components/dashboard/overview";
+import { Overview } from "@/components/dashboard/analytics/overview";
 import { RecentSales } from "@/components/dashboard/recent-sales";
 import { Search } from "@/components/dashboard/search";
 import TeamSwitcher from "@/components/dashboard/team-switcher";
@@ -20,6 +20,8 @@ import { UserNav } from "@/components/dashboard/user-nav";
 import ThemeSwitch from "@/components/dashboard/ThemeSwitch";
 import { DarsChart } from "@/components/dashboard/analytics/DarsChart";
 import { TransactionsChart } from "@/components/dashboard/analytics/TransactionsChart";
+import { ArrowRight, ArrowRightIcon } from "lucide-react";
+import CurrencyPieChart from "@/components/dashboard/analytics/CurrencyPieChart";
 
 export const metadata: Metadata = {
   title: "Dashboard",
@@ -29,8 +31,10 @@ export const metadata: Metadata = {
 export default function DashboardPage() {
   return (
     <>
-      <div className="flex items-center justify-between space-y-2">
-        <h2 className="text-3xl font-bold tracking-tight">Dashboard</h2>
+      <div className="flex items-center justify-between space-y-2 mb-6">
+        <h2 className="text-3xl font-bold tracking-tight">
+          Good Afternoon, John!
+        </h2>
       </div>
 
       <div className="space-y-4">
@@ -141,7 +145,7 @@ export default function DashboardPage() {
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-8">
           <Card className="col-span-4">
             <CardHeader>
-              <CardTitle>Volume</CardTitle>
+              <CardTitle>Revenue</CardTitle>
             </CardHeader>
             <CardContent className="pl-2">
               <Overview />
@@ -154,16 +158,27 @@ export default function DashboardPage() {
           </div>
         </div>
 
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
-          <Card className="col-span-12 md:col-span-12">
-            <CardHeader>
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-8">
+          <Card className="col-span-5">
+            <CardHeader className="flex flex-row justify-between items-center">
               <CardTitle>Recent Transactions</CardTitle>
-              {/* <CardDescription>You made 265 sales this month.</CardDescription> */}
+              <Button
+                variant="outline"
+                size={"default"}
+                type="submit"
+                className="flex gap-2 items-center"
+              >
+                <span className="hidden md:flex"> View All</span>
+                <ArrowRightIcon size={14} />
+              </Button>
             </CardHeader>
             <CardContent>
               <RecentSales />
             </CardContent>
           </Card>
+          <div className="col-span-2 md:col-span-3 lg:col-span-3 space-y-4">
+            <CurrencyPieChart />
+          </div>
         </div>
       </div>
     </>

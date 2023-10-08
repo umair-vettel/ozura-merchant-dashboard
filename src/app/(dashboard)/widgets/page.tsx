@@ -472,8 +472,10 @@ export default async function DemoPage() {
 
   return (
     <>
-      <div className="flex items-center justify-between space-y-2">
-        <h2 className="text-3xl font-bold tracking-tight">Payment Links</h2>
+      <div className="flex  items-center md:flex-row justify-between space-y-2">
+        <h2 className="text-2xl md:text-3xl  font-bold tracking-tight  md:mb-0">
+          Payment Links
+        </h2>
 
         <CreateWidget />
       </div>

@@ -12,7 +12,7 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { CalendarDateRangePicker } from "@/components/dashboard/date-range-picker";
 import { MainNav } from "@/components/dashboard/main-nav";
-import { Overview } from "@/components/dashboard/overview";
+import { Overview } from "@/components/dashboard/analytics/overview";
 import { RecentSales } from "@/components/dashboard/recent-sales";
 import { Search } from "@/components/dashboard/search";
 import TeamSwitcher from "@/components/dashboard/team-switcher";

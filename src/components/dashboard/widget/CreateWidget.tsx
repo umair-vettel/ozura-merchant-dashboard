@@ -30,7 +30,7 @@ const CreateWidget = (props: Props) => {
             type="submit"
             className="flex gap-2 items-center"
           >
-            Create a Payment Link
+            <span className="hidden md:flex"> Create a Payment Link</span>
             <PlusCircleIcon />
           </Button>
         </DialogTrigger>

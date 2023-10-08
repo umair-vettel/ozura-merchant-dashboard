@@ -13,58 +13,34 @@ import {
 } from "@/components/ui/card";
 // import { themes } from "@/components/themes";
 
-// const data = [
-//   {
-//     today: 140,
-//   },
-//   {
-//     today: 139,
-//   },
-//   {
-//     today: 1280,
-//   },
-//   {
-//     today: 390,
-//   },
-//   {
-//     today: 1200,
-//   },
-//   {
-//     today: 230,
-//   },
-//   {
-//     today: 1024,
-//   },
-// ];
-
 const data = [
   {
-    name: "Apr",
+    month: "Apr",
     today: Math.floor(Math.random() * 5000) + 1000,
   },
   {
-    name: "May",
+    month: "May",
     today: Math.floor(Math.random() * 5000) + 1000,
   },
   {
-    name: "Jun",
+    month: "Jun",
     today: Math.floor(Math.random() * 5000) + 1000,
   },
   {
-    name: "Jul",
+    month: "Jul",
     today: Math.floor(Math.random() * 5000) + 1000,
   },
   {
-    name: "Aug",
+    month: "Aug",
     today: Math.floor(Math.random() * 5000) + 1000,
   },
   {
-    name: "Sep",
+    month: "Sep",
     today: Math.floor(Math.random() * 5000) + 1000,
   },
 ];
 
-export function TransactionsChart() {
+export function RevenueChart() {
   const { theme: mode } = useTheme();
   //   const [config] = useConfig();
 
@@ -73,7 +49,7 @@ export function TransactionsChart() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Transactions</CardTitle>
+        <CardTitle>Revenue</CardTitle>
         <CardDescription>+19% from last month</CardDescription>
       </CardHeader>
       <CardContent className="pb-4">
@@ -118,6 +94,13 @@ export function TransactionsChart() {
                   return null;
                 }}
               />
+
+              <XAxis
+                dataKey="month"
+                // tickLine={false}
+                // axisLine={false}
+                style={{ fontSize: "12px", color: "#fff", opacity: 1 }}
+              />
               {/* <Line
                 type="monotone"
                 strokeWidth={2}
@@ -133,12 +116,6 @@ export function TransactionsChart() {
                   } as React.CSSProperties
                 }
               /> */}
-              <XAxis
-                dataKey="name"
-                // tickLine={false}
-                // axisLine={false}
-                style={{ fontSize: "12px", color: "#fff", opacity: 1 }}
-              />
               <Line
                 type="monotone"
                 dataKey="today"
@@ -149,7 +126,7 @@ export function TransactionsChart() {
                 }}
                 style={
                   {
-                    stroke: "#8E617E",
+                    stroke: "#8db9bb",
                   } as React.CSSProperties
                 }
               />

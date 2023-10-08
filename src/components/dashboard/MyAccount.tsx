@@ -32,27 +32,37 @@ const MyAccount = (props: Props) => {
             <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
           </svg>
         </CardHeader> */}
-        <CardContent>
-          <Avatar className="h-[80px] w-[80px] m-auto">
-            <AvatarImage src="/avatars/04.png" alt="@shadcn" />
-            <AvatarFallback>SC</AvatarFallback>
-          </Avatar>
-          <div className="merchantName text-2xl font-bold tracking-tight text-center mt-2">
-            Vettel Tech
-          </div>
-          <div className="text-md text-center opacity-[0.6]">
-            vetteltech@gmail.com
+        <CardContent className="flex flex-col justify-between h-full">
+          <div>
+            <Avatar className="h-[80px] w-[80px] m-auto">
+              <AvatarImage src="/avatars/04.png" alt="@shadcn" />
+              <AvatarFallback>SC</AvatarFallback>
+            </Avatar>
+            <div className="merchantName text-2xl font-bold tracking-tight text-center mt-2">
+              Vettel Tech
+            </div>
+            <div className="text-md text-center opacity-[0.6]">
+              vetteltech@gmail.com
+            </div>
+
+            <Separator className="my-6" />
+
+            <div className="label font-medium text-lg text-center">
+              Merchant Wallet Address:
+            </div>
+            <div className="label font-medium text-sm text-center font-semibold mb-5">
+              {demoMerchantAddr.slice(0, 15)}.....
+              {demoMerchantAddr.slice(30, 42)}
+            </div>
           </div>
 
-          <Separator className="my-6" />
-
-          <div className="label font-medium text-lg text-center">
-            Merchant Wallet Address:
-          </div>
-          <div className="label font-medium text-sm text-center font-semibold">
-            {demoMerchantAddr.slice(0, 15)}.....
-            {demoMerchantAddr.slice(30, 42)}
-          </div>
+          <Button
+            variant="default"
+            size={"full"}
+            // className="absolute bottom-0 w-full left-0 mx-6"
+          >
+            Log Out
+          </Button>
         </CardContent>
       </Card>
       <Card className="flex-1">
