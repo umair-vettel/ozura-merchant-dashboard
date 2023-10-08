@@ -44,6 +44,7 @@ interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
 }
+import { useRouter } from "next/navigation";
 
 export function DataTable<TData, TValue>({
   columns,
@@ -70,10 +71,14 @@ export function DataTable<TData, TValue>({
     },
   });
 
+  const router = useRouter();
+
+  console.log("path", router);
+
   return (
     <div>
-      <div className="flex items-center py-4">
-        <Input
+      <div className="flex justify-end items-center py-4">
+        {/* <Input
           placeholder="Search by Merchant Id"
           value={
             (table.getColumn("merchantId")?.getFilterValue() as string) ?? ""
@@ -82,7 +87,7 @@ export function DataTable<TData, TValue>({
             table.getColumn("merchantId")?.setFilterValue(event.target.value)
           }
           className="max-w-sm"
-        />
+        /> */}
 
         <DataTableViewOptions table={table} />
       </div>
