@@ -33,6 +33,7 @@ export type Payment = {
   item_cost: number;
   payment_link: any;
   item_image: string;
+  processing_fee: string;
 };
 
 export const columns: ColumnDef<Payment>[] = [
@@ -44,6 +45,7 @@ export const columns: ColumnDef<Payment>[] = [
     accessorKey: "payment_id",
     header: "Payment ID",
   },
+
   {
     accessorKey: "item_name",
     header: "Item Name",
@@ -72,6 +74,11 @@ export const columns: ColumnDef<Payment>[] = [
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Item Cost" />
     ),
+  },
+
+  {
+    accessorKey: "processing_fee",
+    header: "Processing Fee",
   },
 
   {

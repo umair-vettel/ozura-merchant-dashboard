@@ -15,6 +15,7 @@ async function getData(): Promise<Payment[]> {
       item_name: "Luctus.png",
       item_cost: 1138,
       item_image: "/avatars/02.png",
+      processing_fee: "0.5%",
       payment_link:
         "https://ozura-widget.vercel.app/?iframe=651f2f8c422abfb173630b55",
     },
@@ -24,6 +25,7 @@ async function getData(): Promise<Payment[]> {
       item_name: "PrimisIn.tiff",
       item_cost: 767,
       item_image: "/avatars/02.png",
+      processing_fee: "0.5%",
       payment_link:
         "https://ozura-widget.vercel.app/?iframe=651f2f8c422abfb173630b55",
     },
@@ -33,6 +35,7 @@ async function getData(): Promise<Payment[]> {
       item_name: "EratId.avi",
       item_cost: 80,
       item_image: "/avatars/02.png",
+      processing_fee: "0.5%",
       payment_link:
         "https://ozura-widget.vercel.app/?iframe=651f2f8c422abfb173630b55",
     },
@@ -42,6 +45,7 @@ async function getData(): Promise<Payment[]> {
       item_name: "Curae.mp3",
       item_cost: 1678,
       item_image: "/avatars/02.png",
+      processing_fee: "0.5%",
       payment_link:
         "https://ozura-widget.vercel.app/?iframe=651f2f8c422abfb173630b55",
     },
@@ -51,6 +55,7 @@ async function getData(): Promise<Payment[]> {
       item_name: "UltricesPosuere.ppt",
       item_cost: 616,
       item_image: "/avatars/02.png",
+      processing_fee: "0.5%",
       payment_link:
         "https://ozura-widget.vercel.app/?iframe=651f2f8c422abfb173630b55",
     },
@@ -60,6 +65,7 @@ async function getData(): Promise<Payment[]> {
       item_name: "MattisNibh.mpeg",
       item_cost: 1021,
       item_image: "/avatars/02.png",
+      processing_fee: "0.5%",
       payment_link:
         "https://ozura-widget.vercel.app/?iframe=651f2f8c422abfb173630b55",
     },
@@ -69,6 +75,7 @@ async function getData(): Promise<Payment[]> {
       item_name: "In.xls",
       item_cost: 1976,
       item_image: "/avatars/02.png",
+      processing_fee: "0.5%",
       payment_link:
         "https://ozura-widget.vercel.app/?iframe=651f2f8c422abfb173630b55",
     },
@@ -78,6 +85,7 @@ async function getData(): Promise<Payment[]> {
       item_name: "PraesentIdMassa.mp3",
       item_cost: 1070,
       item_image: "/avatars/02.png",
+      processing_fee: "0.5%",
       payment_link:
         "https://ozura-widget.vercel.app/?iframe=651f2f8c422abfb173630b55",
     },
@@ -87,6 +95,7 @@ async function getData(): Promise<Payment[]> {
       item_name: "MorbiQuisTortor.mov",
       item_cost: 1664,
       item_image: "/avatars/02.png",
+      processing_fee: "0.5%",
       payment_link:
         "https://ozura-widget.vercel.app/?iframe=651f2f8c422abfb173630b55",
     },
@@ -96,6 +105,7 @@ async function getData(): Promise<Payment[]> {
       item_name: "QuamSollicitudin.mp3",
       item_cost: 831,
       item_image: "/avatars/02.png",
+      processing_fee: "0.5%",
       payment_link:
         "https://ozura-widget.vercel.app/?iframe=651f2f8c422abfb173630b55",
     },
@@ -105,6 +115,7 @@ async function getData(): Promise<Payment[]> {
       item_name: "TristiqueFusceCongue.tiff",
       item_cost: 1660,
       item_image: "/avatars/02.png",
+      processing_fee: "0.5%",
       payment_link:
         "https://ozura-widget.vercel.app/?iframe=651f2f8c422abfb173630b55",
     },
@@ -114,6 +125,7 @@ async function getData(): Promise<Payment[]> {
       item_name: "AliquetMaecenas.pdf",
       item_cost: 451,
       item_image: "/avatars/02.png",
+      processing_fee: "0.5%",
       payment_link:
         "https://ozura-widget.vercel.app/?iframe=651f2f8c422abfb173630b55",
     },
@@ -123,6 +135,7 @@ async function getData(): Promise<Payment[]> {
       item_name: "In.xls",
       item_cost: 1605,
       item_image: "/avatars/02.png",
+      processing_fee: "0.5%",
       payment_link:
         "https://ozura-widget.vercel.app/?iframe=651f2f8c422abfb173630b55",
     },
@@ -132,6 +145,7 @@ async function getData(): Promise<Payment[]> {
       item_name: "In.jpeg",
       item_cost: 752,
       item_image: "/avatars/02.png",
+      processing_fee: "0.5%",
       payment_link:
         "https://ozura-widget.vercel.app/?iframe=651f2f8c422abfb173630b55",
     },
@@ -141,6 +155,7 @@ async function getData(): Promise<Payment[]> {
       item_name: "VehiculaCondimentum.png",
       item_cost: 1909,
       item_image: "/avatars/02.png",
+      processing_fee: "0.5%",
       payment_link:
         "https://ozura-widget.vercel.app/?iframe=651f2f8c422abfb173630b55",
     },
@@ -150,6 +165,7 @@ async function getData(): Promise<Payment[]> {
       item_name: "OdioInHac.tiff",
       item_cost: 1449,
       item_image: "/avatars/02.png",
+      processing_fee: "0.5%",
       payment_link:
         "https://ozura-widget.vercel.app/?iframe=651f2f8c422abfb173630b55",
     },
@@ -159,6 +175,7 @@ async function getData(): Promise<Payment[]> {
       item_name: "AcNibhFusce.mp3",
       item_cost: 1845,
       item_image: "/avatars/02.png",
+      processing_fee: "0.5%",
       payment_link:
         "https://ozura-widget.vercel.app/?iframe=651f2f8c422abfb173630b55",
     },
@@ -168,6 +185,7 @@ async function getData(): Promise<Payment[]> {
       item_name: "Ligula.avi",
       item_cost: 1364,
       item_image: "/avatars/02.png",
+      processing_fee: "0.5%",
       payment_link:
         "https://ozura-widget.vercel.app/?iframe=651f2f8c422abfb173630b55",
     },
@@ -177,6 +195,7 @@ async function getData(): Promise<Payment[]> {
       item_name: "MagnisDis.tiff",
       item_cost: 871,
       item_image: "/avatars/02.png",
+      processing_fee: "0.5%",
       payment_link:
         "https://ozura-widget.vercel.app/?iframe=651f2f8c422abfb173630b55",
     },
@@ -186,6 +205,7 @@ async function getData(): Promise<Payment[]> {
       item_name: "Orci.mov",
       item_cost: 580,
       item_image: "/avatars/02.png",
+      processing_fee: "0.5%",
       payment_link:
         "https://ozura-widget.vercel.app/?iframe=651f2f8c422abfb173630b55",
     },
@@ -195,6 +215,7 @@ async function getData(): Promise<Payment[]> {
       item_name: "OdioJustoSollicitudin.tiff",
       item_cost: 63,
       item_image: "/avatars/02.png",
+      processing_fee: "0.5%",
       payment_link:
         "https://ozura-widget.vercel.app/?iframe=651f2f8c422abfb173630b55",
     },
@@ -204,6 +225,7 @@ async function getData(): Promise<Payment[]> {
       item_name: "Lobortis.jpeg",
       item_cost: 1829,
       item_image: "/avatars/02.png",
+      processing_fee: "0.5%",
       payment_link:
         "https://ozura-widget.vercel.app/?iframe=651f2f8c422abfb173630b55",
     },
@@ -213,6 +235,7 @@ async function getData(): Promise<Payment[]> {
       item_name: "LuctusEtUltrices.png",
       item_cost: 1359,
       item_image: "/avatars/02.png",
+      processing_fee: "0.5%",
       payment_link:
         "https://ozura-widget.vercel.app/?iframe=651f2f8c422abfb173630b55",
     },
@@ -222,6 +245,7 @@ async function getData(): Promise<Payment[]> {
       item_name: "Neque.gif",
       item_cost: 1237,
       item_image: "/avatars/02.png",
+      processing_fee: "0.5%",
       payment_link:
         "https://ozura-widget.vercel.app/?iframe=651f2f8c422abfb173630b55",
     },
@@ -231,6 +255,7 @@ async function getData(): Promise<Payment[]> {
       item_name: "VulputateJusto.avi",
       item_cost: 1015,
       item_image: "/avatars/02.png",
+      processing_fee: "0.5%",
       payment_link:
         "https://ozura-widget.vercel.app/?iframe=651f2f8c422abfb173630b55",
     },
@@ -240,6 +265,7 @@ async function getData(): Promise<Payment[]> {
       item_name: "CurabiturInLibero.jpeg",
       item_cost: 1224,
       item_image: "/avatars/02.png",
+      processing_fee: "0.5%",
       payment_link:
         "https://ozura-widget.vercel.app/?iframe=651f2f8c422abfb173630b55",
     },
@@ -249,6 +275,7 @@ async function getData(): Promise<Payment[]> {
       item_name: "PrimisInFaucibus.avi",
       item_cost: 482,
       item_image: "/avatars/02.png",
+      processing_fee: "0.5%",
       payment_link:
         "https://ozura-widget.vercel.app/?iframe=651f2f8c422abfb173630b55",
     },
@@ -258,6 +285,7 @@ async function getData(): Promise<Payment[]> {
       item_name: "QuamFringillaRhoncus.mp3",
       item_cost: 239,
       item_image: "/avatars/02.png",
+      processing_fee: "0.5%",
       payment_link:
         "https://ozura-widget.vercel.app/?iframe=651f2f8c422abfb173630b55",
     },
@@ -267,6 +295,7 @@ async function getData(): Promise<Payment[]> {
       item_name: "MaurisUllamcorperPurus.mp3",
       item_cost: 544,
       item_image: "/avatars/02.png",
+      processing_fee: "0.5%",
       payment_link:
         "https://ozura-widget.vercel.app/?iframe=651f2f8c422abfb173630b55",
     },
@@ -276,6 +305,7 @@ async function getData(): Promise<Payment[]> {
       item_name: "QuisqueErat.mpeg",
       item_cost: 346,
       item_image: "/avatars/02.png",
+      processing_fee: "0.5%",
       payment_link:
         "https://ozura-widget.vercel.app/?iframe=651f2f8c422abfb173630b55",
     },
@@ -285,6 +315,7 @@ async function getData(): Promise<Payment[]> {
       item_name: "UltricesPosuere.mp3",
       item_cost: 1432,
       item_image: "/avatars/02.png",
+      processing_fee: "0.5%",
       payment_link:
         "https://ozura-widget.vercel.app/?iframe=651f2f8c422abfb173630b55",
     },
@@ -294,6 +325,7 @@ async function getData(): Promise<Payment[]> {
       item_name: "ParturientMontes.ppt",
       item_cost: 827,
       item_image: "/avatars/02.png",
+      processing_fee: "0.5%",
       payment_link:
         "https://ozura-widget.vercel.app/?iframe=651f2f8c422abfb173630b55",
     },
@@ -303,6 +335,7 @@ async function getData(): Promise<Payment[]> {
       item_name: "AmetErat.mp3",
       item_cost: 1162,
       item_image: "/avatars/02.png",
+      processing_fee: "0.5%",
       payment_link:
         "https://ozura-widget.vercel.app/?iframe=651f2f8c422abfb173630b55",
     },
@@ -312,6 +345,7 @@ async function getData(): Promise<Payment[]> {
       item_name: "SitAmetConsectetuer.mp3",
       item_cost: 1486,
       item_image: "/avatars/02.png",
+      processing_fee: "0.5%",
       payment_link:
         "https://ozura-widget.vercel.app/?iframe=651f2f8c422abfb173630b55",
     },
@@ -321,6 +355,7 @@ async function getData(): Promise<Payment[]> {
       item_name: "Nunc.ppt",
       item_cost: 155,
       item_image: "/avatars/02.png",
+      processing_fee: "0.5%",
       payment_link:
         "https://ozura-widget.vercel.app/?iframe=651f2f8c422abfb173630b55",
     },
@@ -330,6 +365,7 @@ async function getData(): Promise<Payment[]> {
       item_name: "IdPretium.xls",
       item_cost: 269,
       item_image: "/avatars/02.png",
+      processing_fee: "0.5%",
       payment_link:
         "https://ozura-widget.vercel.app/?iframe=651f2f8c422abfb173630b55",
     },
@@ -339,6 +375,7 @@ async function getData(): Promise<Payment[]> {
       item_name: "Duis.avi",
       item_cost: 1554,
       item_image: "/avatars/02.png",
+      processing_fee: "0.5%",
       payment_link:
         "https://ozura-widget.vercel.app/?iframe=651f2f8c422abfb173630b55",
     },
@@ -348,6 +385,7 @@ async function getData(): Promise<Payment[]> {
       item_name: "LoremVitae.mov",
       item_cost: 1742,
       item_image: "/avatars/02.png",
+      processing_fee: "0.5%",
       payment_link:
         "https://ozura-widget.vercel.app/?iframe=651f2f8c422abfb173630b55",
     },
@@ -357,6 +395,7 @@ async function getData(): Promise<Payment[]> {
       item_name: "AmetNunc.mp3",
       item_cost: 189,
       item_image: "/avatars/02.png",
+      processing_fee: "0.5%",
       payment_link:
         "https://ozura-widget.vercel.app/?iframe=651f2f8c422abfb173630b55",
     },
@@ -366,6 +405,7 @@ async function getData(): Promise<Payment[]> {
       item_name: "FaucibusCursusUrna.xls",
       item_cost: 1749,
       item_image: "/avatars/02.png",
+      processing_fee: "0.5%",
       payment_link:
         "https://ozura-widget.vercel.app/?iframe=651f2f8c422abfb173630b55",
     },
@@ -375,6 +415,7 @@ async function getData(): Promise<Payment[]> {
       item_name: "PortaVolutpatErat.avi",
       item_cost: 1064,
       item_image: "/avatars/02.png",
+      processing_fee: "0.5%",
       payment_link:
         "https://ozura-widget.vercel.app/?iframe=651f2f8c422abfb173630b55",
     },
@@ -384,6 +425,7 @@ async function getData(): Promise<Payment[]> {
       item_name: "Quam.ppt",
       item_cost: 213,
       item_image: "/avatars/02.png",
+      processing_fee: "0.5%",
       payment_link:
         "https://ozura-widget.vercel.app/?iframe=651f2f8c422abfb173630b55",
     },
@@ -393,6 +435,7 @@ async function getData(): Promise<Payment[]> {
       item_name: "DapibusAugue.ppt",
       item_cost: 1392,
       item_image: "/avatars/02.png",
+      processing_fee: "0.5%",
       payment_link:
         "https://ozura-widget.vercel.app/?iframe=651f2f8c422abfb173630b55",
     },
@@ -402,6 +445,7 @@ async function getData(): Promise<Payment[]> {
       item_name: "Sit.mpeg",
       item_cost: 1847,
       item_image: "/avatars/02.png",
+      processing_fee: "0.5%",
       payment_link:
         "https://ozura-widget.vercel.app/?iframe=651f2f8c422abfb173630b55",
     },
@@ -411,6 +455,7 @@ async function getData(): Promise<Payment[]> {
       item_name: "FelisEu.ppt",
       item_cost: 687,
       item_image: "/avatars/02.png",
+      processing_fee: "0.5%",
       payment_link:
         "https://ozura-widget.vercel.app/?iframe=651f2f8c422abfb173630b55",
     },
@@ -420,6 +465,7 @@ async function getData(): Promise<Payment[]> {
       item_name: "MetusAenean.mp3",
       item_cost: 1018,
       item_image: "/avatars/02.png",
+      processing_fee: "0.5%",
       payment_link:
         "https://ozura-widget.vercel.app/?iframe=651f2f8c422abfb173630b55",
     },
@@ -429,6 +475,7 @@ async function getData(): Promise<Payment[]> {
       item_name: "Amet.ppt",
       item_cost: 1791,
       item_image: "/avatars/02.png",
+      processing_fee: "0.5%",
       payment_link:
         "https://ozura-widget.vercel.app/?iframe=651f2f8c422abfb173630b55",
     },
@@ -438,6 +485,7 @@ async function getData(): Promise<Payment[]> {
       item_name: "Duis.ppt",
       item_cost: 1988,
       item_image: "/avatars/02.png",
+      processing_fee: "0.5%",
       payment_link:
         "https://ozura-widget.vercel.app/?iframe=651f2f8c422abfb173630b55",
     },
@@ -447,6 +495,7 @@ async function getData(): Promise<Payment[]> {
       item_name: "Dolor.doc",
       item_cost: 1415,
       item_image: "/avatars/02.png",
+      processing_fee: "0.5%",
       payment_link:
         "https://ozura-widget.vercel.app/?iframe=651f2f8c422abfb173630b55",
     },
@@ -456,6 +505,7 @@ async function getData(): Promise<Payment[]> {
       item_name: "TinciduntNullaMollis.mp3",
       item_cost: 1080,
       item_image: "/avatars/02.png",
+      processing_fee: "0.5%",
       payment_link:
         "https://ozura-widget.vercel.app/?iframe=651f2f8c422abfb173630b55",
     },

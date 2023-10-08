@@ -27,6 +27,7 @@ const formSchema = z.object({
     message: "Item name must be at least 2 characters.",
   }),
   item_cost: z.string(),
+  processing_fee: z.string(),
 });
 
 const CreateWidgetForm = () => {
@@ -82,6 +83,20 @@ const CreateWidgetForm = () => {
           render={({ field }) => (
             <FormItem>
               <FormLabel className="text-base">Item Cost(USD)</FormLabel>
+              <FormControl>
+                <Input type="text" placeholder="255" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="processing_fee"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel className="text-base">Processing Fee</FormLabel>
               <FormControl>
                 <Input type="text" placeholder="255" {...field} />
               </FormControl>
