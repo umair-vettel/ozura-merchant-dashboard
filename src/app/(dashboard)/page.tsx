@@ -67,7 +67,9 @@ export default function DashboardPage() {
           </Card>
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Widgets</CardTitle>
+              <CardTitle className="text-sm font-medium">
+                Revenue This Month
+              </CardTitle>
 
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -84,7 +86,7 @@ export default function DashboardPage() {
               </svg>
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">+2350</div>
+              <div className="text-2xl font-bold">$4500</div>
               <p className="text-xs text-muted-foreground">
                 +180.1% from last month
               </p>
@@ -136,7 +138,7 @@ export default function DashboardPage() {
               </svg>
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">+573</div>
+              <div className="text-2xl font-bold">$500</div>
               <p className="text-xs text-muted-foreground">
                 +201 since last month
               </p>

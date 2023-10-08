@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -9,11 +10,20 @@ import usdc from "@images/usdc.png";
 import usdt from "@images/usdt.png";
 import usd from "@images/usd.png";
 import BankAccountForm from "./BankAccountForm";
+import { Copy } from "lucide-react";
+import { toast } from "../ui/use-toast";
 
 type Props = {};
 
 const MyAccount = (props: Props) => {
   const demoMerchantAddr = "0x5Bd10054a6dbebfc81A10DeC69Cd34d94C971C3B";
+  const copyToClipboard = (link: string) => {
+    navigator.clipboard.writeText(link);
+    toast({
+      variant: "success",
+      title: `Wallet Address Copied Sucessfully`,
+    });
+  };
   return (
     <div className="flex flex-col  lg:flex-row gap-5">
       <Card className="flex-1 pt-6">
@@ -48,11 +58,18 @@ const MyAccount = (props: Props) => {
             <Separator className="my-6" />
 
             <div className="label font-medium text-lg text-center">
-              Merchant Wallet Address:
+              Wallet Address:
             </div>
-            <div className="label font-medium text-sm text-center font-semibold mb-5">
-              {demoMerchantAddr.slice(0, 15)}.....
-              {demoMerchantAddr.slice(30, 42)}
+
+            <div
+              onClick={() => copyToClipboard(demoMerchantAddr)}
+              className="flex justify-center items-center text-sm gap-2 cursor-pointer"
+            >
+              <span>
+                {demoMerchantAddr.slice(0, 15)}.....
+                {demoMerchantAddr.slice(30, 42)}
+              </span>
+              <Copy size={15} />
             </div>
           </div>
 
