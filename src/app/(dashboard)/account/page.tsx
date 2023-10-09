@@ -2,7 +2,7 @@ import { Separator } from "@/components/ui/separator";
 import { ProfileForm } from "./profile-form";
 import MyAccount from "@/components/dashboard/MyAccount";
 
-export default function SettingsProfilePage() {
+export default function Account() {
   return (
     <div className="space-y-6">
       {/* <div>

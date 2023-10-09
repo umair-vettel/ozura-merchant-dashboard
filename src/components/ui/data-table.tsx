@@ -73,8 +73,6 @@ export function DataTable<TData, TValue>({
 
   const router = useRouter();
 
-  console.log("path", router);
-
   return (
     <div>
       <div className="flex justify-end items-center py-4">

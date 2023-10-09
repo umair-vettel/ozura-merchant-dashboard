@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -16,7 +16,23 @@ import { toast } from "../ui/use-toast";
 type Props = {};
 
 const MyAccount = (props: Props) => {
-  const userData = localStorage.getItem("user") || "";
+  const [userData, setUserData] = useState<string | any>(null);
+
+  useEffect(() => {
+    // Retrieve user data from localStorage
+    const storedUserData = localStorage.getItem("user");
+
+    if (storedUserData) {
+      // Check if the stored data is valid JSON
+      try {
+        const parsedUserData = JSON.parse(storedUserData);
+        setUserData(parsedUserData);
+      } catch (error) {
+        console.error("Error parsing user data from localStorage:", error);
+      }
+    }
+  }, []);
+
   const user = JSON.parse(userData);
   const demoMerchantAddr = user?.depositAddress;
   const copyToClipboard = (link: string) => {
