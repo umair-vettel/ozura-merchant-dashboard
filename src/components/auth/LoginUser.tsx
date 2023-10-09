@@ -3,7 +3,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { useForm, SubmitHandler } from "react-hook-form";
-
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -14,16 +13,14 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-
 import { useToast } from "@/components/ui/use-toast";
-
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Plus } from "lucide-react";
-
 import { getProviders, signIn, useSession } from "next-auth/react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect } from "react";
+import axios from "axios";
 
 const formSchema = z.object({
   email: z
@@ -32,7 +29,7 @@ const formSchema = z.object({
       message: "Enter a valid email.",
     })
     .min(2, {
-      message: "Username must be at least 2 characters.",
+      message: "Email must be at least 2 characters.",
     }),
   password: z.string(),
 });
@@ -58,35 +55,25 @@ export function LoginUser() {
 
     console.log("Success:", values);
     const { email, password } = values;
-    const username = email;
     try {
-      const login = await signIn("credentials", {
-        username,
-        password,
-        callbackUrl: "http://localhost:3000/",
-        redirect: false,
-      });
-
-      if (login?.ok) {
+      const path = `${process.env.NEXT_PUBLIC_API_URL}/users/login`;
+      const body = {
+        email: email,
+        password: password,
+      };
+      const res = await axios.post(path, body);
+      if (res.status == 200) {
+        toast({
+          title: "Login Successful",
+        });
+        localStorage.setItem("user", JSON.stringify(res.data.data));
         router.push("/");
+      } else {
+        toast({
+          title: "Invalid Credentials",
+          variant: "destructive",
+        });
       }
-
-      console.log("API response:", session);
-      // if (res.status === 201) {
-      //   toast({
-      //     title: "New User Registered Sucessfully",
-      //   });
-      // }
-
-      // if (res.status === 500) {
-      //   toast({
-      //     title: "Error",
-      //     variant: "destructive",
-      //   });
-      // }
-
-      // res.status === 201 &&
-      // 	router.push('/dashboard/login?success=Account has been created');
     } catch (err) {
       // setError(err);
       console.log(err);

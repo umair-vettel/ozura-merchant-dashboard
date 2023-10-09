@@ -16,7 +16,9 @@ import { toast } from "../ui/use-toast";
 type Props = {};
 
 const MyAccount = (props: Props) => {
-  const demoMerchantAddr = "0x5Bd10054a6dbebfc81A10DeC69Cd34d94C971C3B";
+  const userData = localStorage.getItem("user") || "";
+  const user = JSON.parse(userData);
+  const demoMerchantAddr = user?.depositAddress;
   const copyToClipboard = (link: string) => {
     navigator.clipboard.writeText(link);
     toast({
@@ -49,10 +51,10 @@ const MyAccount = (props: Props) => {
               <AvatarFallback>SC</AvatarFallback>
             </Avatar>
             <div className="merchantName text-2xl font-bold tracking-tight text-center mt-2">
-              Vettel Tech
+              {user?.name}
             </div>
             <div className="text-md text-center opacity-[0.6]">
-              vetteltech@gmail.com
+              {user?.email}
             </div>
 
             <Separator className="my-6" />
@@ -66,8 +68,9 @@ const MyAccount = (props: Props) => {
               className="flex justify-center items-center text-sm gap-2 cursor-pointer"
             >
               <span>
-                {demoMerchantAddr.slice(0, 15)}.....
-                {demoMerchantAddr.slice(30, 42)}
+                {user?.depositAddress}
+                {/*  {demoMerchantAddr.slice(0, 15)}.....
+                {demoMerchantAddr.slice(30, 42)} */}
               </span>
               <Copy size={15} />
             </div>
@@ -77,6 +80,10 @@ const MyAccount = (props: Props) => {
             variant="default"
             size={"full"}
             // className="absolute bottom-0 w-full left-0 mx-6"
+            onClick={() => {
+              localStorage.removeItem("user");
+              window.open("/login", "_self");
+            }}
           >
             Log Out
           </Button>

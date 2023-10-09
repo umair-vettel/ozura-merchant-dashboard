@@ -40,12 +40,44 @@ export const columns: ColumnDef<Payment>[] = [
     header: "ID",
   },
   {
+    accessorKey: "transactionHash",
+    header: "Transaction Hash",
+    cell: ({ row }) => {
+      const trxHash: any = row.getValue("transactionHash") || "";
+      return (
+        <div className="flex items-center space-x-2">
+          <div className="flex flex-col">
+            <a
+              className="font-medium cursor-pointer"
+              target="_blank"
+              href={`https://mumbai.polygonscan.com/tx/${trxHash}`}
+            >
+              {trxHash.slice(0, 6)}......{trxHash.slice(-6)}
+            </a>
+          </div>
+        </div>
+      );
+    },
+  },
+  /*   {
     accessorKey: "merchantId",
     header: "Merchant ID",
+  }, */
+  {
+    accessorKey: "buyer",
+    header: "Paid By",
   },
   {
-    accessorKey: "quoteId",
-    header: "Quote Id",
+    accessorKey: "productName",
+    header: "Product Name",
+  },
+  {
+    accessorKey: "quantity",
+    header: "Quantity",
+  },
+  {
+    accessorKey: "amount",
+    header: "Amount",
   },
   {
     accessorKey: "transactionFees",
@@ -65,9 +97,9 @@ export const columns: ColumnDef<Payment>[] = [
   },
 
   {
-    accessorKey: "createdAt",
+    accessorKey: "completedAt",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Created At" />
+      <DataTableColumnHeader column={column} title="Completed At" />
     ),
   },
 

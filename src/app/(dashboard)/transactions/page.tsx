@@ -1,7 +1,9 @@
+"use client";
 import { Payment, columns } from "./columns";
 import { DataTable } from "@components/ui/data-table";
 import { Metadata } from "next";
-
+import axios from "axios";
+import { useEffect, useState } from "react";
 async function getData(): Promise<Payment[]> {
   // Fetch data from your API here.
   return [
@@ -458,13 +460,61 @@ async function getData(): Promise<Payment[]> {
   ];
 }
 
+/* 
 export const metadata: Metadata = {
   title: "Transactions | Ozura Pay",
   description: "Transactions | Ozura Pay",
 };
-
-export default async function DemoPage() {
-  const data = await getData();
+ */
+export default function DemoPage() {
+  // const data = await getData();
+  const [transactionsData, setTransactionsData] = useState<any>([]);
+  const getTransactions = async () => {
+    try {
+      const path = `${process.env.NEXT_PUBLIC_API_URL}/payments`;
+      const userData = localStorage.getItem("user") || "";
+      const user = JSON.parse(userData);
+      const res = await axios.get(path, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${user?.token}`,
+        },
+      });
+      console.log("API response:", res);
+      if (res.status === 200) {
+        const payments = res.data
+          .filter((item: any) => item.merchantId === user?.id)
+          .filter((item: any) => item.status === "COMPLETED")
+          .map((item: any, index: any) => {
+            return {
+              id: index + 1,
+              merchantId: item.merchantId,
+              transactionHash: item.transactionHash,
+              buyer: `${item.userRefId.slice(0, 4)}....${item.userRefId.slice(
+                -4,
+              )}`,
+              productName: item.productName,
+              quantity: item.quantity,
+              amount: "$" + item.amountInUSD / 10 ** 6,
+              transactionFees: item.merchantProcessingFees + "%",
+              paymentMode:
+                item.paymentMethod != null
+                  ? "CRYPTO" + " (" + item.paymentMethod + ")"
+                  : "",
+              status: item.status,
+              completedAt: new Date(item.completedAt).toUTCString(),
+            };
+          });
+        console.log(payments);
+        setTransactionsData(payments);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  useEffect(() => {
+    getTransactions();
+  }, []);
 
   return (
     <>
@@ -474,7 +524,7 @@ export default async function DemoPage() {
         </h2>
       </div>
       <div className=" mx-auto ">
-        <DataTable columns={columns} data={data} />
+        <DataTable columns={columns} data={transactionsData} />
       </div>
     </>
   );

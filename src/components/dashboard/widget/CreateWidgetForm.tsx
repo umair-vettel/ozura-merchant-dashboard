@@ -14,13 +14,12 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-
 import { useToast } from "@/components/ui/use-toast";
-
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Check, Copy, Plus } from "lucide-react";
 import { useState } from "react";
+import axios from "axios";
 
 const formSchema = z.object({
   item_name: z.string().min(2, {
@@ -34,6 +33,7 @@ const CreateWidgetForm = () => {
   const { toast } = useToast();
   const [successMessage, setsuccessMessage] = useState(false);
   const [file, setFile] = useState<File | null>(null);
+  const [widgetId, setWidgetId] = useState("");
   // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -44,14 +44,32 @@ const CreateWidgetForm = () => {
     e.preventDefault();
 
     console.log("Success:", values);
-    const { item_name, item_cost } = values;
-
+    const { item_name, item_cost, processing_fee } = values;
     console.log(values);
+    const path = `${process.env.NEXT_PUBLIC_API_URL}/widgets`;
+    const body = {
+      productName: item_name,
+      productPrice: item_cost,
+      merchantProcessingFees: processing_fee,
+      imageUrl:
+        "https://static.vecteezy.com/system/resources/previews/001/189/272/non_2x/ticket-png.png",
+    };
+    const userData = localStorage.getItem("user") || "";
+    const user = JSON.parse(userData);
+    const res = await axios.post(path, body, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${user?.token}`,
+      },
+    });
+
+    if (res.status === 201) {
+      const widgetId = res.data.data._id;
+      setWidgetId(`https://ozura-widget.vercel.app/?widget=${widgetId}`);
+      setsuccessMessage(true);
+    }
     setsuccessMessage(true);
   };
-
-  const demoLink =
-    "https://ozura-widget.vercel.app/?iframe=651f2f8c422abfb173630b55";
 
   const copyToClipboard = (link: string) => {
     navigator.clipboard.writeText(link);
@@ -132,12 +150,12 @@ const CreateWidgetForm = () => {
               <Check className="text-green-500 mb-1" />
             </div>
             <div
-              onClick={() => copyToClipboard(demoLink)}
+              onClick={() => copyToClipboard(widgetId)}
               className="flex justify-center items-center text-sm gap-2 cursor-pointer"
             >
               <span>
-                {demoLink.slice(0, 15)}.....
-                {demoLink.slice(30, 42)}
+                {widgetId.slice(0, 15)}.....
+                {widgetId.slice(30, 42)}
               </span>
               <Copy size={15} />
             </div>

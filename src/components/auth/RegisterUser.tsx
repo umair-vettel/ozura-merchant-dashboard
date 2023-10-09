@@ -20,7 +20,7 @@ import { useToast } from "@/components/ui/use-toast";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Plus } from "lucide-react";
-
+import axios from "axios";
 const formSchema = z.object({
   email: z
     .string()
@@ -47,23 +47,22 @@ export function RegisterUser() {
     console.log("Success:", values);
     const { email, password } = values;
     try {
-      const res = await fetch("/api/auth/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email,
-          password,
-          role: "admin",
-        }),
-      });
+      const path = `${process.env.NEXT_PUBLIC_API_URL}/users/register-merchant`;
+      const body = {
+        email: email,
+        password: password,
+      };
+      const res = await axios.post(path, body);
 
       console.log("API response:", res);
-      if (res.status === 201) {
+      if (res.status === 200) {
         toast({
           title: "New User Registered Sucessfully",
         });
+        setTimeout(() => {
+          window.open("/login", "_self");
+        }, 2000);
+        //
       }
 
       if (res.status === 500) {

@@ -1,3 +1,4 @@
+"use client";
 import { Payment, columns } from "./columns";
 import { DataTable } from "@components/ui/data-table";
 import { Metadata } from "next";
@@ -5,7 +6,8 @@ import { Button } from "@/components/ui/button";
 import { Plus, PlusCircle, PlusCircleIcon } from "lucide-react";
 import Link from "next/link";
 import CreateWidget from "@/components/dashboard/widget/CreateWidget";
-
+import axios from "axios";
+import { useEffect, useState } from "react";
 async function getData(): Promise<Payment[]> {
   // Fetch data from your API here.
   return [
@@ -511,14 +513,53 @@ async function getData(): Promise<Payment[]> {
     },
   ];
 }
-
+/* 
 export const metadata: Metadata = {
   title: "Payment Links | Ozura Pay",
   description: "Payment Links | Ozura Pay",
-};
+}; */
 
-export default async function DemoPage() {
-  const data = await getData();
+export default function DemoPage() {
+  //const data = await getData();
+  const [widgetData, setWidgetData] = useState<any>([]);
+  const getWidgets = async () => {
+    try {
+      const path = `${process.env.NEXT_PUBLIC_API_URL}/widgets`;
+      const userData = localStorage.getItem("user") || "";
+      const user = JSON.parse(userData);
+      console.log(user);
+      const res = await axios.get(path, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${user?.token}`,
+        },
+      });
+      console.log(res);
+
+      if (res.status === 200) {
+        const merchantWidgets = res.data
+          .filter((item: any) => item.merchantId === user?.id)
+          .map((item: any, index: any) => {
+            return {
+              id: index + 1,
+              payment_id: item._id,
+              item_name: item.productName,
+              item_cost: item.productPrice,
+              item_image: item.imageUrl,
+              processing_fee: item.merchantProcessingFees,
+              payment_link: `https://ozura-widget.vercel.app/?widget=${item._id}`,
+            };
+          });
+        console.log(merchantWidgets);
+        setWidgetData(merchantWidgets);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    getWidgets();
+  }, []);
 
   return (
     <>
@@ -530,7 +571,7 @@ export default async function DemoPage() {
         <CreateWidget />
       </div>
       <div className=" mx-auto ">
-        <DataTable columns={columns} data={data} />
+        <DataTable columns={columns} data={widgetData} />
       </div>
     </>
   );
