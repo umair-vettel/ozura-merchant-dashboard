@@ -1,9 +1,5 @@
-"use client";
-
 import { useTheme } from "next-themes";
 import { Line, LineChart, ResponsiveContainer, Tooltip, XAxis } from "recharts";
-
-// import { useConfig } from "@/hooks/use-config";
 import {
   Card,
   CardContent,
@@ -11,52 +7,54 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-// import { themes } from "@/components/themes";
 
-const data = [
-  {
-    month: "Apr",
-    today: Math.floor(Math.random() * 5000) + 1000,
-  },
-  {
-    month: "May",
-    today: Math.floor(Math.random() * 5000) + 1000,
-  },
-  {
-    month: "Jun",
-    today: Math.floor(Math.random() * 5000) + 1000,
-  },
-  {
-    month: "Jul",
-    today: Math.floor(Math.random() * 5000) + 1000,
-  },
-  {
-    month: "Aug",
-    today: Math.floor(Math.random() * 5000) + 1000,
-  },
-  {
-    month: "Sep",
-    today: Math.floor(Math.random() * 5000) + 1000,
-  },
-];
+// Define a TypeScript interface for the Stats object
+interface Stats {
+  feesCollected: {
+    current: number;
+    change: number;
+  };
+  revenue: {
+    current: number;
+    change: number;
+  };
+  transactions: {
+    current: number;
+    change: number;
+  };
+  averageOrderValue: {
+    current: number;
+    change: number;
+  };
+  revenueGraphData: {
+    month: number;
+    revenue: number;
+  }[];
+  transactionsGraphData: {
+    month: number;
+    count: number;
+  }[];
+}
 
-export function RevenueChart() {
+// Modify the component to accept the Stats interface as props
+interface RevenueChartProps {
+  stats: Stats;
+}
+
+export function RevenueChart({ stats }: RevenueChartProps) {
   const { theme: mode } = useTheme();
-  //   const [config] = useConfig();
-
-  //   const theme = themes.find((theme) => theme.name === config.theme);
 
   return (
     <Card>
       <CardHeader>
         <CardTitle>Revenue</CardTitle>
-        <CardDescription>+19% from last month</CardDescription>
+        <CardDescription>{`${stats.revenue.change}% from last month`}</CardDescription>
       </CardHeader>
       <CardContent className="pb-4">
         <div className="h-[150px]">
           <ResponsiveContainer width="100%" height="100%">
             <LineChart
-              data={data}
+              data={stats.revenueGraphData} // Use stats.revenueGraphData for the chart data
               margin={{
                 top: 5,
                 right: 10,
@@ -78,14 +76,6 @@ export function RevenueChart() {
                               {payload[0].value}
                             </span>
                           </div>
-                          {/* <div className="flex flex-col">
-                            <span className="text-[0.70rem] uppercase text-muted-foreground">
-                              Today
-                            </span>
-                            <span className="font-bold">
-                              {payload[1].value}
-                            </span>
-                          </div> */}
                         </div>
                       </div>
                     );
@@ -97,25 +87,9 @@ export function RevenueChart() {
 
               <XAxis
                 dataKey="month"
-                // tickLine={false}
-                // axisLine={false}
                 style={{ fontSize: "12px", color: "#fff", opacity: 1 }}
               />
-              {/* <Line
-                type="monotone"
-                strokeWidth={2}
-                dataKey="average"
-                activeDot={{
-                  r: 6,
-                  style: { fill: "var(--theme-primary)", opacity: 0.25 },
-                }}
-                style={
-                  {
-                    stroke: "#fff",
-                    opacity: 0.25,
-                  } as React.CSSProperties
-                }
-              /> */}
+
               <Line
                 type="monotone"
                 dataKey="today"
@@ -124,11 +98,9 @@ export function RevenueChart() {
                   r: 8,
                   style: { fill: "var(--theme-primary)" },
                 }}
-                style={
-                  {
-                    stroke: "#8db9bb",
-                  } as React.CSSProperties
-                }
+                style={{
+                  stroke: "#8db9bb",
+                }}
               />
             </LineChart>
           </ResponsiveContainer>

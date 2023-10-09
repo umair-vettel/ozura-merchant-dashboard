@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Overview } from "@/components/dashboard/analytics/overview";
 import { RecentSales } from "@/components/dashboard/recent-sales";
 
-import { DarsChart } from "@/components/dashboard/analytics/DarsChart";
+import { DARSChart } from "@/components/dashboard/analytics/DarsChart";
 import { TransactionsChart } from "@/components/dashboard/analytics/TransactionsChart";
 import { ArrowRightIcon } from "lucide-react";
 import Link from "next/link";
@@ -28,7 +28,16 @@ interface Stats {
     current: number;
     change: number;
   };
+  revenueGraphData: {
+    month: number;
+    revenue: number;
+  }[];
+  transactionsGraphData: {
+    month: number;
+    count: number;
+  }[];
 }
+
 export default function Dashboard() {
   const [stats, setStats] = useState<Stats>({
     feesCollected: {
@@ -47,6 +56,8 @@ export default function Dashboard() {
       current: 0,
       change: 0,
     },
+    revenueGraphData: [],
+    transactionsGraphData: [],
   });
   const getStats = async () => {
     try {
@@ -192,13 +203,13 @@ export default function Dashboard() {
               <CardTitle>Revenue</CardTitle>
             </CardHeader>
             <CardContent className="pl-2">
-              <Overview />
+              <Overview data={stats.revenueGraphData} />
             </CardContent>
           </Card>
 
           <div className="col-span-4 md:col-span-3 lg:col-span-4 space-y-4">
-            <TransactionsChart />
-            <DarsChart />
+            <TransactionsChart stats={stats} />
+            <DARSChart stats={stats} />
           </div>
         </div>
 

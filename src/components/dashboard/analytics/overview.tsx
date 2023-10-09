@@ -1,5 +1,3 @@
-"use client";
-
 import {
   Bar,
   BarChart,
@@ -8,85 +6,34 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-
-const data = [
-  // {
-  //   name: "Jan",
-  //   total: Math.floor(Math.random() * 5000) + 1000,
-  // },
-  // {
-  //   name: "Feb",
-  //   total: Math.floor(Math.random() * 5000) + 1000,
-  // },
-  // {
-  //   name: "Mar",
-  //   total: Math.floor(Math.random() * 5000) + 1000,
-  // },
-  {
-    name: "Apr",
-    total: Math.floor(Math.random() * 5000) + 1000,
-  },
-  {
-    name: "May",
-    total: Math.floor(Math.random() * 5000) + 1000,
-  },
-  {
-    name: "Jun",
-    total: Math.floor(Math.random() * 5000) + 1000,
-  },
-  {
-    name: "Jul",
-    total: Math.floor(Math.random() * 5000) + 1000,
-  },
-  {
-    name: "Aug",
-    total: Math.floor(Math.random() * 5000) + 1000,
-  },
-  {
-    name: "Sep",
-    total: Math.floor(Math.random() * 5000) + 1000,
-  },
-  {
-    name: "Oct",
-    total: Math.floor(Math.random() * 5000) + 1000,
-  },
-  {
-    name: "Nov",
-    total: Math.floor(Math.random() * 5000) + 1000,
-  },
-  {
-    name: "Dec",
-    total: Math.floor(Math.random() * 5000) + 1000,
-  },
+const monthNames = [
+  "",
+  "JAN",
+  "FEB",
+  "MAR",
+  "APR",
+  "MAY",
+  "JUN",
+  "JUL",
+  "AUG",
+  "SEP",
+  "OCT",
+  "NOV",
+  "DEC",
 ];
 
-export function Overview() {
+export function Overview({ data }: any) {
+  const mapData = data.map((item: any) => {
+    return {
+      name: monthNames[item.month],
+      total: item.totalRevenue,
+    };
+  });
+  console.log(data, mapData);
   return (
     <div className="max-w-[100%]">
       <ResponsiveContainer width="99%" height={450}>
-        <BarChart data={data}>
-          {/* <Tooltip
-            content={({ active, payload }) => {
-              if (active && payload && payload.length) {
-                return (
-                  <div className="rounded-lg border bg-background p-2 ">
-                    <div className="grid grid-cols-2 gap-2">
-                      <div className="flex flex-col">
-                        <span className="text-[0.70rem] uppercase text-muted-foreground">
-                          Average
-                        </span>
-                        <span className="font-bold text-muted-foreground">
-                          {payload[0].value}
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                );
-              }
-
-              return null;
-            }}
-          /> */}
+        <BarChart data={mapData}>
           <XAxis
             dataKey="name"
             stroke="#888888"

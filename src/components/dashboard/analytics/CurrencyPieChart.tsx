@@ -97,7 +97,7 @@ export default function CurrencyPieChart() {
     (_: any, index: any) => {
       setActiveIndex(index);
     },
-    [setActiveIndex]
+    [setActiveIndex],
   );
 
   return (
