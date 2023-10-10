@@ -18,7 +18,7 @@ import {
   LayoutDashboard,
   Settings,
 } from "lucide-react";
-
+import CheckAuth from "@/hooks/checkAuth";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -32,7 +32,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <>
+    <CheckAuth>
       <html lang="en" className="dark">
         <body className={inter.className}>
           <main>
@@ -91,6 +91,6 @@ export default function RootLayout({
           <Toaster />
         </body>
       </html>
-    </>
+    </CheckAuth>
   );
 }

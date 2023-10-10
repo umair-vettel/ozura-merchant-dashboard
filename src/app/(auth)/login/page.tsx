@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
 import { LoginUser } from "@/components/auth/LoginUser";
 import logo from "@/public/ozura-logo.svg";
-
+import CheckAuth from "@/hooks/checkAuth";
 export const metadata: Metadata = {
   title: "Authentication",
   description: "Authentication forms built using the components.",
@@ -14,13 +14,13 @@ export const metadata: Metadata = {
 
 export default function AuthenticationPage() {
   return (
-    <>
+    <CheckAuth>
       <div className="container relative flex h-[800px] flex-col items-center justify-center md:grid lg:max-w-none lg:grid-cols-2 lg:px-0">
         <Link
           href="/register"
           className={cn(
             buttonVariants({ variant: "ghost" }),
-            "absolute right-4 top-4 md:right-8 md:top-8"
+            "absolute right-4 top-4 md:right-8 md:top-8",
           )}
         >
           Register
@@ -72,6 +72,6 @@ export default function AuthenticationPage() {
           </div>
         </div>
       </div>
-    </>
+    </CheckAuth>
   );
 }

@@ -527,7 +527,6 @@ export default function DemoPage() {
       const path = `${process.env.NEXT_PUBLIC_API_URL}/widgets`;
       const userData = localStorage.getItem("user") || "";
       const user = JSON.parse(userData);
-      console.log(user);
       const res = await axios.get(path, {
         headers: {
           "Content-Type": "application/json",
