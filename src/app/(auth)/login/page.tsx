@@ -20,28 +20,39 @@ export default function AuthenticationPage() {
           href="/register"
           className={cn(
             buttonVariants({ variant: "ghost" }),
-            "absolute right-4 top-4 md:right-8 md:top-8",
+            "absolute right-4 top-4 md:right-8 md:top-8"
           )}
         >
           Register
         </Link>
-        <div className="relative hidden h-full flex-col bg-muted p-10 text-white dark:border-r lg:flex bg">
-          <div className="absolute inset-0 bg-[url('/images/login.jpg')] bg-cover bg-center" />
-          <div className="relative z-20 flex items-center text-lg font-medium">
+        <div className="relative hidden h-full flex-col bg-muted p-10 text-white dark:border-r lg:flex bg lg:max-h-[100vh] lg:overflow-hidden">
+          <div className="absolute top-[50px] left-[50px] z-20 flex items-center text-lg font-medium">
             <Link href="/">
               <Image src={logo} alt="logo" />
             </Link>
           </div>
-          {/* <div className="relative z-20 mt-auto">
-            <blockquote className="space-y-2">
-              <p className="text-lg">
-                &ldquo;This library has saved me countless hours of work and
-                helped me deliver stunning designs to my clients faster than
-                ever before.&rdquo;
-              </p>
-              <footer className="text-sm">Sofia Davis</footer>
-            </blockquote>
-          </div> */}
+
+          <div className="w-50% overflow-hidden h-screen overflow-x-hidden flex bg-color-3 flex-wrap relative">
+            <div className="w-1/2 h-1/2 flex rounded-[10%_90%_80%_20%/20%_20%_80%_60%] animate-flip bg-color-1"></div>
+
+            <div className="w-1/2 h-1/2 flex rounded-[10%_90%_80%_20%/20%_20%_80%_60%] animate-backflip bg-color-4"></div>
+
+            <div className="w-1/2 h-1/2 flex rounded-[10%_90%_80%_20%/20%_20%_80%_60%] animate-flip bg-color-2"></div>
+
+            <div className="w-1/2 h-1/2 flex rounded-[10%_90%_80%_20%/20%_20%_80%_60%] animate-backflip bg-color-5"></div>
+
+            <div
+              className=" backdrop-blur-200"
+              style={{
+                position: "fixed",
+                width: "50vw",
+                height: "100%",
+                top: 0,
+                left: "0px",
+                right: "0px",
+              }}
+            ></div>
+          </div>
         </div>
         <div className="lg:p-8 w-full">
           <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
