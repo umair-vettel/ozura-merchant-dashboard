@@ -12,12 +12,17 @@ import usd from "@images/usd.png";
 import BankAccountForm from "./BankAccountForm";
 import { Copy } from "lucide-react";
 import { toast } from "../ui/use-toast";
-
+import axios from "axios";
+import WithdrawFunds from "./WithdrawFunds";
 type Props = {};
 
 const MyAccount = (props: Props) => {
   const [userData, setUserData] = useState<string | any>(null);
-
+  const [walletBalance, setWalletBalance] = useState<any>({
+    ethBalance: "0",
+    usdtBalance: "0",
+  });
+  const [USDValueForETH, setUSDValueForETH] = useState<number>(0);
   useEffect(() => {
     // Retrieve user data from localStorage
     const storedUserData = localStorage.getItem("user");
@@ -32,8 +37,48 @@ const MyAccount = (props: Props) => {
       }
     }
   }, []);
+  const getMerchantBalance = async () => {
+    try {
+      console.log("FETCHING MERCHANT BALANCE");
+      const token = userData.token;
+      const path = `${process.env.NEXT_PUBLIC_API_URL}/payments/getMerchantBalance`;
+      const headers = {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      };
+      const res = await axios.get(path, { headers });
+      if (res.status == 200) {
+        setWalletBalance(res.data);
+        const ethBalance = res.data.ethBalance;
+        const usdValueForETH = await convertEthToUSD(
+          Number(ethBalance) / 10 ** 18,
+        );
+        setUSDValueForETH(Number(usdValueForETH));
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  useEffect(() => {
+    if (userData) {
+      getMerchantBalance();
+    }
+  }, [userData]);
 
-  const user = JSON.parse(userData);
+  // convert eth to usd using coingecko api
+  const convertEthToUSD = async (ethBalance: number) => {
+    try {
+      const path = `https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd`;
+      const res = await axios.get(path);
+      const data = res.data;
+      const ethPrice = data.ethereum.usd;
+      const usdBalance = ethBalance * ethPrice;
+      return usdBalance;
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  const user = userData;
   const demoMerchantAddr = user?.depositAddress;
   const copyToClipboard = (link: string) => {
     navigator.clipboard.writeText(link);
@@ -114,9 +159,24 @@ const MyAccount = (props: Props) => {
           <div className="subCard flex gap-5 items-center rounded-lg border bg-background text-card-foreground shadow-sm px-3 py-5">
             <Image src={ethIcon} alt="icon" className="max-w-[40px]" />
             <div>
-              <div className="font-bold text-lg">0.0285334 ETH</div>
-              <div className="text-md text-center opacity-[0.6]">
-                46.842730931016234 USD
+              <div className="font-bold text-lg">
+                {(walletBalance.ethBalance / 10 ** 18).toFixed(6)} ETH
+              </div>
+              <div className="text-md  opacity-[0.6]">
+                {USDValueForETH.toLocaleString()} USD
+              </div>
+            </div>
+          </div>
+
+          <div className="subCard flex gap-5 items-center rounded-lg border bg-background text-card-foreground shadow-sm px-3 py-5">
+            <Image src={usdt} alt="icon" className="max-w-[40px]" />
+
+            <div>
+              <div className="font-bold text-lg">
+                {(walletBalance.usdtBalance / 10 ** 6).toFixed(6)} USDT
+              </div>
+              <div className="text-md  opacity-[0.6]">
+                {(walletBalance.usdtBalance / 10 ** 6).toLocaleString()} USD
               </div>
             </div>
           </div>
@@ -124,20 +184,8 @@ const MyAccount = (props: Props) => {
           <div className="subCard flex gap-5 items-center rounded-lg border bg-background text-card-foreground shadow-sm px-3 py-5">
             <Image src={usdc} alt="icon" className="max-w-[40px]" />
             <div>
-              <div className="font-bold text-lg">0.0285334 USDC</div>
-              <div className="text-md text-center opacity-[0.6]">
-                46.842730931016234 USD
-              </div>
-            </div>
-          </div>
-
-          <div className="subCard flex gap-5 items-center rounded-lg border bg-background text-card-foreground shadow-sm px-3 py-5">
-            <Image src={usdt} alt="icon" className="max-w-[40px]" />
-            <div>
-              <div className="font-bold text-lg">0.0285334 USDT</div>
-              <div className="text-md text-center opacity-[0.6]">
-                46.842730931016234 USD
-              </div>
+              <div className="font-bold text-lg">0 USDC</div>
+              <div className="text-md opacity-[0.6]">0 USD</div>
             </div>
           </div>
 
@@ -147,9 +195,7 @@ const MyAccount = (props: Props) => {
               <div className="font-bold text-lg">$5244</div>
             </div>
           </div>
-          <Button variant="default" size={"full"}>
-            Withdraw Payment
-          </Button>
+          <WithdrawFunds />
         </CardContent>
       </Card>
 
