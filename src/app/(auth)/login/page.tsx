@@ -26,10 +26,19 @@ export default function AuthenticationPage() {
           Register
         </Link>
         <div className="relative hidden h-full flex-col bg-muted p-10 text-white dark:border-r lg:flex bg lg:max-h-[100vh] lg:overflow-hidden">
-          <div className="absolute top-[50px] left-[50px] z-20 flex items-center text-lg font-medium">
+          <div className="absolute top-[30px] left-[50px] z-20 flex items-center text-lg font-medium">
             <Link href="/">
               <Image src={logo} alt="logo" />
             </Link>
+          </div>
+          <div className="absolute bottom-[30px] left-[50px] mr-[50px] z-20 mt-auto">
+            <blockquote className="space-y-2">
+              <p className="text-lg">
+                The all-in-one solution for merchants looking to expand their
+                payment capability.
+              </p>
+              {/* <footer className="text-sm">Sofia Davis</footer> */}
+            </blockquote>
           </div>
 
           <div className="w-50% overflow-hidden h-screen overflow-x-hidden flex bg-color-3 flex-wrap relative">
