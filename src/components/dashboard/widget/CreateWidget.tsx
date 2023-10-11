@@ -18,7 +18,7 @@ import CreateWidgetForm from "./CreateWidgetForm";
 
 type Props = {};
 
-const CreateWidget = (props: Props) => {
+const CreateWidget = ({ getData }: { getData: any }) => {
   const [open, setOpen] = React.useState(false);
   return (
     <>
@@ -41,7 +41,7 @@ const CreateWidget = (props: Props) => {
               {`Please fill the details below to create a Payment Link`}
             </DialogDescription>
           </DialogHeader>
-          <CreateWidgetForm />
+          <CreateWidgetForm getData={getData} />
         </DialogContent>
       </Dialog>
     </>

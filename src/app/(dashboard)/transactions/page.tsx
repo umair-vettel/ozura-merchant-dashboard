@@ -4,6 +4,8 @@ import { DataTable } from "@components/ui/data-table";
 import { Metadata } from "next";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+
 async function getData(): Promise<Payment[]> {
   // Fetch data from your API here.
   return [
@@ -558,56 +560,18 @@ export default function DemoPage() {
           Transactions
         </h2>
       </div>
-      <br />
-      <div className=" mx-auto ">
-        <ul className="text-sm font-medium text-center text-gray-500 divide-x divide-gray-200 rounded-lg shadow sm:flex dark:divide-gray-700 dark:text-gray-400">
-          <li
-            className={`w-full ${
-              activeTab === "Deposits"
-                ? "bg-gray-100 text-gray-900"
-                : "bg-white hover:text-gray-700 hover:bg-gray-50 dark:bg-gray-800 dark:hover:bg-gray-700 dark:text-white"
-            }`}
-          >
-            <div
-              className={`inline-block w-full p-4 focus:ring-4 focus:ring-blue-300 focus:outline-none ${
-                activeTab === "Deposits"
-                  ? "focus:ring-blue-300"
-                  : "hover:ring-blue-300"
-              }`}
-              aria-current={activeTab === "Deposits" ? "page" : undefined}
-              onClick={() => handleTabChange("Deposits")}
-            >
-              Deposits
-            </div>
-          </li>
-          <li
-            className={`w-full ${
-              activeTab === "Withdrawals"
-                ? "bg-gray-100 text-gray-900"
-                : "bg-white hover:text-gray-700 hover:bg-gray-50 dark:bg-gray-800 dark:hover:bg-gray-700 dark:text-white"
-            }`}
-          >
-            <div
-              className={`inline-block w-full p-4 focus:ring-4 focus:ring-blue-300 focus:outline-none ${
-                activeTab === "Withdrawals"
-                  ? "focus:ring-blue-300"
-                  : "hover:ring-blue-300"
-              }`}
-              aria-current={activeTab === "Withdrawals" ? "page" : undefined}
-              onClick={() => handleTabChange("Withdrawals")}
-            >
-              Withdrawals
-            </div>
-          </li>
-        </ul>
-
-        {activeTab === "Deposits" && (
+      <Tabs defaultValue="deposit" className="w-full">
+        <TabsList className="translate-y-[56px]">
+          <TabsTrigger value="deposit">Deposit</TabsTrigger>
+          <TabsTrigger value="withdrawals">Withdrawals</TabsTrigger>
+        </TabsList>
+        <TabsContent value="deposit">
           <DataTable columns={columns} data={transactionsData} />
-        )}
-        {activeTab === "Withdrawals" && (
+        </TabsContent>
+        <TabsContent value="withdrawals">
           <DataTable columns={withdrawalTableColumn} data={withdrawalData} />
-        )}
-      </div>
+        </TabsContent>
+      </Tabs>
     </>
   );
 }

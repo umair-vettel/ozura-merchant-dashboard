@@ -29,7 +29,7 @@ const formSchema = z.object({
   processing_fee: z.string(),
 });
 
-const CreateWidgetForm = () => {
+const CreateWidgetForm = ({ getData }: any) => {
   const { toast } = useToast();
   const [successMessage, setsuccessMessage] = useState(false);
   const [file, setFile] = useState<File | null>(null);
@@ -67,6 +67,7 @@ const CreateWidgetForm = () => {
       const widgetId = res.data.data._id;
       setWidgetId(`https://ozura-widget.vercel.app/?widget=${widgetId}`);
       setsuccessMessage(true);
+      getData();
     }
     setsuccessMessage(true);
   };

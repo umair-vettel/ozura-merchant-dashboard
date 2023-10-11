@@ -138,7 +138,7 @@ export default function CurrencyPieChart({ data, totalRevenue }: any) {
                   backgroundColors[index % backgroundColors.length],
               }}
             ></span>
-            {item.name} ({item?.value}%)
+            {item.name} ({item?.value.toFixed(2)}%)
           </div>
         ))}
       </div>

@@ -567,7 +567,7 @@ export default function DemoPage() {
           Payment Links
         </h2>
 
-        <CreateWidget />
+        <CreateWidget getData={getWidgets} />
       </div>
       <div className=" mx-auto ">
         <DataTable columns={columns} data={widgetData} />

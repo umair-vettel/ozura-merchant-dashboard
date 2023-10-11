@@ -34,6 +34,15 @@ export type Payment = {
   createdAt: any;
 };
 
+export type Withdrawal = {
+  id: number;
+  withdrawalWallet: string;
+  transactionHash: string;
+  paymentMode: string;
+  status: "ACCEPTED" | "REJECTED" | "COMPLETED" | "PROCESSING";
+  createdAt: any;
+  amount: string;
+};
 export const columns: ColumnDef<Payment>[] = [
   {
     accessorKey: "id",
@@ -154,4 +163,55 @@ export const columns: ColumnDef<Payment>[] = [
   //     );
   //   },
   // },
+];
+
+export const withdrawalTableColumn: ColumnDef<Withdrawal>[] = [
+  {
+    accessorKey: "id",
+    header: "ID",
+  },
+  {
+    accessorKey: "transactionHash",
+    header: "Transaction Hash",
+    cell: ({ row }) => {
+      const trxHash: any = row.getValue("transactionHash") || "";
+      return (
+        <div className="flex items-center space-x-2">
+          <div className="flex flex-col">
+            <a
+              className="font-medium cursor-pointer"
+              target="_blank"
+              href={`https://mumbai.polygonscan.com/tx/${trxHash}`}
+            >
+              {trxHash.slice(0, 6)}......{trxHash.slice(-6)}
+            </a>
+          </div>
+        </div>
+      );
+    },
+  },
+
+  {
+    accessorKey: "amount",
+    header: "Amount",
+  },
+
+  {
+    accessorKey: "paymentMode",
+    header: "Payment Mode",
+  },
+
+  {
+    accessorKey: "status",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Status" />
+    ),
+  },
+
+  {
+    accessorKey: "completedAt",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Completed At" />
+    ),
+  },
 ];

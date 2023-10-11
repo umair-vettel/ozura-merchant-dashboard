@@ -21,7 +21,7 @@ const style = {
   p: 4,
 };
 
-export default function WithdrawFunds() {
+export default function WithdrawFunds({ getData }: { getData: any }) {
   const [open, setOpen] = React.useState(false);
 
   const [withdrawAmountinUSD, setwithdrawAmountinUSD] = useState("");
@@ -75,6 +75,7 @@ export default function WithdrawFunds() {
       setwithdrawalDone(true);
       setwithdrawalTxnHash(res?.data?.trx?.transactionHash);
       setLoading(false);
+      getData();
     } catch (err) {
       console.log(err);
       setLoading(false);

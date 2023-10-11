@@ -196,7 +196,7 @@ const MyAccount = (props: Props) => {
               <div className="font-bold text-lg">$5244</div>
             </div>
           </div>
-          <WithdrawFunds />
+          <WithdrawFunds getData={getMerchantBalance} />
         </CardContent>
       </Card>
 
