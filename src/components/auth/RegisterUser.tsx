@@ -1,8 +1,8 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
 import { useForm, SubmitHandler } from "react-hook-form";
+import * as z from "zod";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -16,11 +16,33 @@ import {
 } from "@/components/ui/form";
 
 import { useToast } from "@/components/ui/use-toast";
-
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Plus } from "lucide-react";
 import axios from "axios";
+import { useSignMessage } from "wagmi";
+
+import {
+  EthereumClient,
+  w3mConnectors,
+  w3mProvider,
+} from "@web3modal/ethereum";
+import { configureChains, createConfig, WagmiConfig } from "wagmi";
+import { polygonMumbai } from "wagmi/chains";
+import { ConnectWallet } from "./ConnectWallet";
+import { Web3Modal } from "@web3modal/react";
+
+const chains = [polygonMumbai];
+const projectId = "9bd8e96770735215658e458c36342a9b";
+
+const { publicClient } = configureChains(chains, [w3mProvider({ projectId })]);
+const wagmiConfig = createConfig({
+  autoConnect: true,
+  connectors: w3mConnectors({ projectId, chains }),
+  publicClient,
+});
+const ethereumClient = new EthereumClient(wagmiConfig, chains);
+
 const formSchema = z.object({
   email: z
     .string()
@@ -34,8 +56,8 @@ const formSchema = z.object({
 });
 
 export function RegisterUser() {
-  const { toast } = useToast();
   // 1. Define your form.
+  const { toast } = useToast();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
   });
@@ -85,40 +107,46 @@ export function RegisterUser() {
     console.log(values);
   };
   return (
-    <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-        <FormField
-          control={form.control}
-          name="email"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel className="text-base">Email</FormLabel>
-              <FormControl>
-                <Input placeholder="user@missglobal.com" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+    <>
+      <WagmiConfig config={wagmiConfig}>
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+            <FormField
+              control={form.control}
+              name="email"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="text-base">Email</FormLabel>
+                  <FormControl>
+                    <Input placeholder="user@missglobal.com" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
 
-        <FormField
-          control={form.control}
-          name="password"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel className="text-base">Password</FormLabel>
-              <FormControl>
-                <Input type="password" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+            <FormField
+              control={form.control}
+              name="password"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="text-base">Password</FormLabel>
+                  <FormControl>
+                    <Input type="password" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
 
-        <Button variant="default" size={"full"} type="submit">
-          Register
-        </Button>
-      </form>
-    </Form>
+            <Button variant="default" size={"full"} type="submit">
+              Register
+            </Button>
+          </form>
+          <ConnectWallet />
+        </Form>
+      </WagmiConfig>
+      <Web3Modal projectId={projectId} ethereumClient={ethereumClient} />
+    </>
   );
 }

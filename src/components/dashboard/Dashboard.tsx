@@ -62,7 +62,15 @@ export default function Dashboard() {
   const getStats = async () => {
     try {
       const path = `${process.env.NEXT_PUBLIC_API_URL}/payments/stats`;
-      const res = await axios.get(path);
+      const user = localStorage.getItem("user") || "";
+      const token = JSON.parse(user).token;
+
+      const headers = {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      };
+
+      const res = await axios.get(path, { headers });
       const data: Stats = res.data;
       setStats(data);
     } catch (err) {

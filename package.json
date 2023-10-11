@@ -31,6 +31,9 @@
     "@types/node": "20.5.7",
     "@types/react": "18.2.21",
     "@types/react-dom": "18.2.7",
+    "@web3modal/ethereum": "^2.7.1",
+    "@web3modal/react": "^2.7.1",
+    "@web3modal/wagmi": "^3.1.0",
     "autoprefixer": "10.4.15",
     "axios": "^1.5.1",
     "bcryptjs": "^2.4.3",
@@ -56,6 +59,8 @@
     "tailwindcss": "3.3.3",
     "tailwindcss-animate": "^1.0.6",
     "typescript": "5.2.2",
+    "viem": "^1.16.3",
+    "wagmi": "^1.4.3",
     "zod": "^3.22.2"
   },
   "devDependencies": {

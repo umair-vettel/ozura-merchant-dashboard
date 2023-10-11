@@ -7,6 +7,7 @@ import { buttonVariants } from "@/components/ui/button";
 import { RegisterUser } from "@/components/auth/RegisterUser";
 import logo from "@/public/ozura-logo.svg";
 import CheckAuth from "@/hooks/checkAuth";
+
 export const metadata: Metadata = {
   title: "Authentication",
   description: "Authentication forms built using the components.",

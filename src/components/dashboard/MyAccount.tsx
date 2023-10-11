@@ -87,6 +87,7 @@ const MyAccount = (props: Props) => {
       title: `Wallet Address Copied Sucessfully`,
     });
   };
+  console.log(user);
   return (
     <div className="flex flex-col  lg:flex-row gap-5">
       <Card className="flex-1 pt-6">
@@ -112,10 +113,10 @@ const MyAccount = (props: Props) => {
               <AvatarFallback>SC</AvatarFallback>
             </Avatar>
             <div className="merchantName text-2xl font-bold tracking-tight text-center mt-2">
-              {user?.name}
+              {user?.name ? user?.name : `Merchant`}
             </div>
             <div className="text-md text-center opacity-[0.6]">
-              {user?.email}
+              {user?.email ? user?.email : user?.walletAddress}
             </div>
 
             <Separator className="my-6" />
