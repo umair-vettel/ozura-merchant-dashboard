@@ -50,6 +50,12 @@ module.exports = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+          "ozura-blue": "#1794fc",
+        "color-1": "#9e325f",
+        "color-2": "#8e5f43",
+        "color-3": "#252031",
+        "color-4": "#573e91",
+        "color-5": "#436ba2",
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -65,6 +71,28 @@ module.exports = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: 0 },
         },
+         animate: {
+          '0%': {
+            borderRadius: '30% 70% 70% 30% / 30% 30% 70% 60%',
+            transform: 'scale(0) rotate(0deg) translate(20%, 20%)',
+          },
+          '100%': {
+            borderRadius: '88% 10% 22% 58% / 73% 56% 34% 77%',
+            transform: 'scale(2) rotate(180deg) translate(20%, -20%)',
+          },
+        },
+      },
+      backdropBlur: {
+        '200': '100px'
+  
+      
+      },
+       borderGrad: {
+        '1': {
+            borderWidth: '2px',
+            borderStyle: 'solid',
+            borderImage: 'linear-gradient(to right,#436ba2,#573e91,#9e325f) 1',
+        }
       },
        backgroundImage: {
         'auth': "url('/img/hero-pattern.svg')",
@@ -73,6 +101,8 @@ module.exports = {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        'flip': 'animate 15s ease-in-out infinite alternate',
+        'backflip': 'animate 15s ease-in-out infinite alternate-reverse',
       },
     },
   },

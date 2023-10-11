@@ -118,7 +118,7 @@ export function RegisterUser() {
                 <FormItem>
                   <FormLabel className="text-base">Email</FormLabel>
                   <FormControl>
-                    <Input placeholder="user@missglobal.com" {...field} />
+                    <Input placeholder="example@example.com" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

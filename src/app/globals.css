@@ -124,3 +124,129 @@
     @apply bg-background text-foreground;
   }
 }
+
+.ozuraLogoText {
+  transition: color 0.5s;
+  transition-timing-function: ease-out;
+}
+
+.syntax_highlighter pre,
+.syntax_highlighter code {
+  background-color: rgb(37, 31, 49) !important;
+  border-radius: 10px;
+}
+
+.ozuraLogoText:hover {
+  background: linear-gradient(to right, #ff7200, #ff049e, #1794fc);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: rainbow 3s ease-in-out infinite;
+  background-size: 400% 100%;
+}
+
+.rainbow_text_animated_ozura {
+  background: linear-gradient(to right, #ff7200, #ff049e, #1794fc);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: rainbow 3s ease-in-out infinite;
+  background-size: 400% 100%;
+}
+
+.gradient_container {
+  background: linear-gradient(
+    49deg,
+    rgba(255, 114, 0, 0.5),
+    rgba(255, 4, 158, 0.5),
+    rgba(25, 116, 252, 0.5),
+    rgba(255, 255, 255, 0.5)
+  );
+  background-size: 200% 200%;
+
+  animation: gradient 12s ease-in-out infinite;
+  opacity: 80%;
+}
+
+.gradient_container:hover {
+  opacity: 100%;
+}
+
+.gradient_container2 {
+  background: linear-gradient(
+    -49deg,
+    rgba(255, 114, 0, 0.5),
+    rgba(255, 4, 158, 0.5),
+    rgba(25, 116, 252, 0.5),
+    rgba(255, 255, 255, 0.5)
+  );
+  background-size: 200% 200%;
+
+  animation: gradient 12s ease-in-out infinite;
+  opacity: 80%;
+}
+
+.gradient_container2:hover {
+  opacity: 100%;
+}
+
+.pre {
+  padding: 1rem;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@-webkit-keyframes rainbow {
+  0% {
+    background-position: 0% 82%;
+  }
+  50% {
+    background-position: 100% 19%;
+  }
+  100% {
+    background-position: 0% 82%;
+  }
+}
+@-moz-keyframes rainbow {
+  0% {
+    background-position: 0% 82%;
+  }
+  50% {
+    background-position: 100% 19%;
+  }
+  100% {
+    background-position: 0% 82%;
+  }
+}
+@-o-keyframes rainbow {
+  0% {
+    background-position: 0% 82%;
+  }
+  50% {
+    background-position: 100% 19%;
+  }
+  100% {
+    background-position: 0% 82%;
+  }
+}
+@keyframes rainbow {
+  0% {
+    background-position: 0% 82%;
+  }
+  50% {
+    background-position: 100% 19%;
+  }
+  100% {
+    background-position: 0% 82%;
+  }
+}
