@@ -1,5 +1,5 @@
 "use client";
-import { Payment, columns } from "./columns";
+import { Payment, columns, withdrawalTableColumn } from "./columns";
 import { DataTable } from "@components/ui/data-table";
 import { Metadata } from "next";
 import axios from "axios";
@@ -469,6 +469,12 @@ export const metadata: Metadata = {
 export default function DemoPage() {
   // const data = await getData();
   const [transactionsData, setTransactionsData] = useState<any>([]);
+  const [withdrawalData, setWithdrawalData] = useState<any>([]);
+  const [activeTab, setActiveTab] = useState("Deposits");
+  const handleTabChange = (tab: any) => {
+    setActiveTab(tab);
+  };
+
   const getTransactions = async () => {
     try {
       const path = `${process.env.NEXT_PUBLIC_API_URL}/payments`;
@@ -495,7 +501,10 @@ export default function DemoPage() {
               )}`,
               productName: item.productName,
               quantity: item.quantity,
-              amount: "$" + item.amountInUSD / 10 ** 6,
+              amount:
+                item.paymentMethod == "ETH"
+                  ? (item.amountInETH / 10 ** 18).toFixed(2) + " ETH"
+                  : "$ " + (item.amountInUSD / 10 ** 6).toFixed(2),
               transactionFees: item.merchantProcessingFees + "%",
               paymentMode:
                 item.paymentMethod != null
@@ -505,6 +514,32 @@ export default function DemoPage() {
               completedAt: new Date(item.completedAt).toUTCString(),
             };
           });
+
+        const withdrawalData = res.data
+          .filter((item: any) => item.merchantId === user?.id)
+          .filter((item: any) => item.status === "WITHDRAWN")
+          .map((item: any, index: any) => {
+            return {
+              id: index + 1,
+              transactionHash: item.transactionHash,
+              withdrawalWallet: `${item.depositAddress.slice(
+                0,
+                4,
+              )}....${item.depositAddress.slice()}`,
+              amount:
+                item.paymentMethod == "ETH"
+                  ? (item.amountInETH / 10 ** 18).toFixed(2) + " ETH"
+                  : "$ " + (item.amountInUSD / 10 ** 6).toFixed(2),
+              paymentMode:
+                item.paymentMethod != null
+                  ? "CRYPTO" + " (" + item.paymentMethod + ")"
+                  : "",
+              status: "COMPLETED",
+              completedAt: new Date(item.completedAt).toUTCString(),
+            };
+          });
+        setWithdrawalData(withdrawalData);
+
         console.log(payments);
         setTransactionsData(payments);
       }
@@ -523,8 +558,55 @@ export default function DemoPage() {
           Transactions
         </h2>
       </div>
+      <br />
       <div className=" mx-auto ">
-        <DataTable columns={columns} data={transactionsData} />
+        <ul className="text-sm font-medium text-center text-gray-500 divide-x divide-gray-200 rounded-lg shadow sm:flex dark:divide-gray-700 dark:text-gray-400">
+          <li
+            className={`w-full ${
+              activeTab === "Deposits"
+                ? "bg-gray-100 text-gray-900"
+                : "bg-white hover:text-gray-700 hover:bg-gray-50 dark:bg-gray-800 dark:hover:bg-gray-700 dark:text-white"
+            }`}
+          >
+            <div
+              className={`inline-block w-full p-4 focus:ring-4 focus:ring-blue-300 focus:outline-none ${
+                activeTab === "Deposits"
+                  ? "focus:ring-blue-300"
+                  : "hover:ring-blue-300"
+              }`}
+              aria-current={activeTab === "Deposits" ? "page" : undefined}
+              onClick={() => handleTabChange("Deposits")}
+            >
+              Deposits
+            </div>
+          </li>
+          <li
+            className={`w-full ${
+              activeTab === "Withdrawals"
+                ? "bg-gray-100 text-gray-900"
+                : "bg-white hover:text-gray-700 hover:bg-gray-50 dark:bg-gray-800 dark:hover:bg-gray-700 dark:text-white"
+            }`}
+          >
+            <div
+              className={`inline-block w-full p-4 focus:ring-4 focus:ring-blue-300 focus:outline-none ${
+                activeTab === "Withdrawals"
+                  ? "focus:ring-blue-300"
+                  : "hover:ring-blue-300"
+              }`}
+              aria-current={activeTab === "Withdrawals" ? "page" : undefined}
+              onClick={() => handleTabChange("Withdrawals")}
+            >
+              Withdrawals
+            </div>
+          </li>
+        </ul>
+
+        {activeTab === "Deposits" && (
+          <DataTable columns={columns} data={transactionsData} />
+        )}
+        {activeTab === "Withdrawals" && (
+          <DataTable columns={withdrawalTableColumn} data={withdrawalData} />
+        )}
       </div>
     </>
   );
