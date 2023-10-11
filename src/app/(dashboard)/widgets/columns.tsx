@@ -88,10 +88,10 @@ export const columns: ColumnDef<Payment>[] = [
       const plink: string = row.getValue("payment_link");
 
       return (
-        <Link href={plink} className="font-medium">
+        <a href={plink} className="font-medium" target="_blank">
           {plink.slice(0, 15)}.....
           {plink.slice(30, 42)}
-        </Link>
+        </a>
       );
     },
   },
