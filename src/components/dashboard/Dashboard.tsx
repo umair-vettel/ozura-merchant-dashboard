@@ -36,6 +36,13 @@ interface Stats {
     month: number;
     count: number;
   }[];
+  last5Transactions: any;
+  paymentMethodPercentages: {
+    USD: number;
+    ETH: number;
+    USDT: number;
+  };
+  totalRevenue: number;
 }
 
 export default function Dashboard() {
@@ -58,7 +65,15 @@ export default function Dashboard() {
     },
     revenueGraphData: [],
     transactionsGraphData: [],
+    last5Transactions: [],
+    paymentMethodPercentages: {
+      USD: 0,
+      ETH: 0,
+      USDT: 0,
+    },
+    totalRevenue: 0,
   });
+  const [userData, setUserData] = useState<any>({});
   const getStats = async () => {
     try {
       const path = `${process.env.NEXT_PUBLIC_API_URL}/payments/stats`;
@@ -77,16 +92,23 @@ export default function Dashboard() {
       console.log(err);
     }
   };
+  const getUserData = async () => {
+    try {
+      const user = localStorage.getItem("user") || "";
+      setUserData(JSON.parse(user));
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   useEffect(() => {
     getStats();
+    getUserData();
   }, []);
   return (
     <>
       <div className="flex items-center justify-between space-y-2 mb-6">
-        <h2 className="text-3xl font-bold tracking-tight">
-          Good Afternoon, John!
-        </h2>
+        <h2 className="text-3xl font-bold tracking-tight">Analytics</h2>
       </div>
 
       <div className="space-y-4">
@@ -243,11 +265,14 @@ export default function Dashboard() {
               </Link>
             </CardHeader>
             <CardContent>
-              <RecentSales />
+              <RecentSales data={stats.last5Transactions} />
             </CardContent>
           </Card>
           <div className="col-span-2 md:col-span-3 lg:col-span-3 space-y-4">
-            <CurrencyPieChart />
+            <CurrencyPieChart
+              data={stats?.paymentMethodPercentages}
+              totalRevenue={stats?.totalRevenue}
+            />
           </div>
         </div>
       </div>
