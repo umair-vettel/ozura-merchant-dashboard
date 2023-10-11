@@ -4,6 +4,8 @@ import { DataTable } from "@components/ui/data-table";
 import { Metadata } from "next";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+
 async function getData(): Promise<Payment[]> {
   // Fetch data from your API here.
   return [
@@ -491,7 +493,7 @@ export default function DemoPage() {
               merchantId: item.merchantId,
               transactionHash: item.transactionHash,
               buyer: `${item.userRefId.slice(0, 4)}....${item.userRefId.slice(
-                -4,
+                -4
               )}`,
               productName: item.productName,
               quantity: item.quantity,
@@ -524,7 +526,18 @@ export default function DemoPage() {
         </h2>
       </div>
       <div className=" mx-auto ">
-        <DataTable columns={columns} data={transactionsData} />
+        <Tabs defaultValue="deposit" className="w-full">
+          <TabsList className="translate-y-[56px]">
+            <TabsTrigger value="deposit">Deposit</TabsTrigger>
+            <TabsTrigger value="withdrawals">Withdrawals</TabsTrigger>
+          </TabsList>
+          <TabsContent value="deposit">
+            <DataTable columns={columns} data={transactionsData} />
+          </TabsContent>
+          <TabsContent value="withdrawals">
+            <DataTable columns={columns} data={transactionsData} />
+          </TabsContent>
+        </Tabs>
       </div>
     </>
   );
