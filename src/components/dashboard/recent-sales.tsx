@@ -19,7 +19,7 @@ export function RecentSales({ data }: any) {
               </div>
             </div>
             <div className="ml-auto font-medium">
-              +${(item?.amountInUSD / 10 ** 6).toFixed(2)}
+              +${(item?.amountInUSD / 10 ** 6)?.toFixed(2)}
             </div>
           </div>
         </>

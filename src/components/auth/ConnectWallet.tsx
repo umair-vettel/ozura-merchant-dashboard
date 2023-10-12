@@ -11,7 +11,7 @@ export const ConnectWallet = () => {
   const { connect } = useConnect();
   const { toast } = useToast();
   const { data, isError, isLoading, isSuccess, signMessage } = useSignMessage({
-    message: "Resgitration for Ozura",
+    message: "Registration for Ozura",
   });
   const [btnDisabled, setBtnDisabled] = useState(false);
   const account = useAccount();

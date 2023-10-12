@@ -505,8 +505,8 @@ export default function DemoPage() {
               quantity: item.quantity,
               amount:
                 item.paymentMethod == "ETH"
-                  ? (item.amountInETH / 10 ** 18).toFixed(2) + " ETH"
-                  : "$ " + (item.amountInUSD / 10 ** 6).toFixed(2),
+                  ? (item.amountInETH / 10 ** 18)?.toFixed(2) + " ETH"
+                  : "$ " + (item.amountInUSD / 10 ** 6)?.toFixed(2),
               transactionFees: item.merchantProcessingFees + "%",
               paymentMode:
                 item.paymentMethod != null
@@ -530,8 +530,8 @@ export default function DemoPage() {
               )}....${item.depositAddress.slice()}`,
               amount:
                 item.paymentMethod == "ETH"
-                  ? (item.amountInETH / 10 ** 18).toFixed(2) + " ETH"
-                  : "$ " + (item.amountInUSD / 10 ** 6).toFixed(2),
+                  ? (item.amountInETH / 10 ** 18)?.toFixed(2) + " ETH"
+                  : "$ " + (item.amountInUSD / 10 ** 6)?.toFixed(2),
               paymentMode:
                 item.paymentMethod != null
                   ? "CRYPTO" + " (" + item.paymentMethod + ")"

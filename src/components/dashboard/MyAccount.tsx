@@ -161,7 +161,7 @@ const MyAccount = (props: Props) => {
             <Image src={ethIcon} alt="icon" className="max-w-[40px]" />
             <div>
               <div className="font-bold text-lg">
-                {(walletBalance.ethBalance / 10 ** 18).toFixed(6)} ETH
+                {(walletBalance.ethBalance / 10 ** 18)?.toFixed(6)} ETH
               </div>
               <div className="text-md  opacity-[0.6]">
                 {USDValueForETH.toLocaleString()} USD
@@ -174,7 +174,7 @@ const MyAccount = (props: Props) => {
 
             <div>
               <div className="font-bold text-lg">
-                {(walletBalance.usdtBalance / 10 ** 6).toFixed(6)} USDT
+                {(walletBalance.usdtBalance / 10 ** 6)?.toFixed(6)} USDT
               </div>
               <div className="text-md  opacity-[0.6]">
                 {(walletBalance.usdtBalance / 10 ** 6).toLocaleString()} USD
