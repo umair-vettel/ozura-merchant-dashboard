@@ -250,3 +250,9 @@
     background-position: 0% 82%;
   }
 }
+
+.ellipsis1 {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

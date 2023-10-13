@@ -51,7 +51,7 @@ const MyAccount = (props: Props) => {
         setWalletBalance(res.data);
         const ethBalance = res.data.ethBalance;
         const usdValueForETH = await convertEthToUSD(
-          Number(ethBalance) / 10 ** 18,
+          Number(ethBalance) / 10 ** 18
         );
         setUSDValueForETH(Number(usdValueForETH));
       }
@@ -90,7 +90,7 @@ const MyAccount = (props: Props) => {
   console.log(user);
   return (
     <div className="flex flex-col  lg:flex-row gap-5">
-      <Card className="flex-1 pt-6">
+      <Card className="flex-1 pt-6 md:max-w-[33%]">
         {/* <CardHeader className="flex  flex-row items-center justify-between space-y-0 pb-2">
           <CardTitle className="text-sm font-medium">Volume</CardTitle>
           <svg
@@ -106,7 +106,7 @@ const MyAccount = (props: Props) => {
             <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
           </svg>
         </CardHeader> */}
-        <CardContent className="flex flex-col justify-between h-full">
+        <CardContent className="flex flex-col justify-between h-full ">
           <div>
             <Avatar className="h-[80px] w-[80px] m-auto">
               <AvatarImage src="/avatars/04.png" alt="@shadcn" />
@@ -115,7 +115,7 @@ const MyAccount = (props: Props) => {
             <div className="merchantName text-2xl font-bold tracking-tight text-center mt-2">
               {user?.name ? user?.name : `Merchant`}
             </div>
-            <div className="text-md text-center opacity-[0.6]">
+            <div className="text-md text-center text-sm opacity-[0.6] break-words">
               {user?.email ? user?.email : user?.walletAddress}
             </div>
 
@@ -127,13 +127,13 @@ const MyAccount = (props: Props) => {
 
             <div
               onClick={() => copyToClipboard(demoMerchantAddr)}
-              className="flex justify-center items-center text-sm gap-2 cursor-pointer"
+              className="flex justify-center items-center text-sm gap-2 cursor-pointer flex-wrap "
             >
-              <span>
-                {user?.depositAddress}
-                {/*  {demoMerchantAddr.slice(0, 15)}.....
-                {demoMerchantAddr.slice(30, 42)} */}
-              </span>
+              <div className="break-words block ellipsis1">
+                {/* {user?.depositAddress} */}
+                {user?.depositAddress.slice(0, 15)}.....
+                {user?.depositAddress.slice(30, 42)}
+              </div>
               <Copy size={15} />
             </div>
           </div>
@@ -141,7 +141,7 @@ const MyAccount = (props: Props) => {
           <Button
             variant="default"
             size={"full"}
-            // className="absolute bottom-0 w-full left-0 mx-6"
+            className="mt-6"
             onClick={() => {
               localStorage.removeItem("user");
               window.open("/login", "_self");
