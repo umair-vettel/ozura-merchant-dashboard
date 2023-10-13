@@ -499,7 +499,7 @@ export default function DemoPage() {
               merchantId: item.merchantId,
               transactionHash: item.transactionHash,
               buyer: `${item.userRefId.slice(0, 4)}....${item.userRefId.slice(
-                -4,
+                -4
               )}`,
               productName: item.productName,
               quantity: item.quantity,
@@ -526,7 +526,7 @@ export default function DemoPage() {
               transactionHash: item.transactionHash,
               withdrawalWallet: `${item.depositAddress.slice(
                 0,
-                4,
+                4
               )}....${item.depositAddress.slice()}`,
               amount:
                 item.paymentMethod == "ETH"
@@ -561,7 +561,7 @@ export default function DemoPage() {
         </h2>
       </div>
       <Tabs defaultValue="deposit" className="w-full">
-        <TabsList className="translate-y-[56px]">
+        <TabsList className="translate-y-[23px] md:translate-y-[56px]">
           <TabsTrigger value="deposit">Deposit</TabsTrigger>
           <TabsTrigger value="withdrawals">Withdrawals</TabsTrigger>
         </TabsList>
