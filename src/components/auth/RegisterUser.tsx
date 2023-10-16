@@ -1,9 +1,9 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import * as z from "zod";
-
+import PhoneInput, { isValidPhoneNumber } from "react-phone-number-input";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -14,6 +14,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import "react-phone-number-input/style.css";
 
 import { useToast } from "@/components/ui/use-toast";
 import { Input } from "@/components/ui/input";
@@ -44,6 +45,12 @@ const wagmiConfig = createConfig({
 const ethereumClient = new EthereumClient(wagmiConfig, chains);
 
 const formSchema = z.object({
+  first_name: z.string(),
+  last_name: z.string(),
+  phone: z.string(),
+  business_name: z.string(),
+  website: z.string(),
+
   email: z
     .string()
     .email({
@@ -61,6 +68,7 @@ export function RegisterUser() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
   });
+  console.log(form);
 
   // 2. Define a submit handler.
   const onSubmit = async (values: z.infer<typeof formSchema>, e: any) => {
@@ -111,19 +119,115 @@ export function RegisterUser() {
       <WagmiConfig config={wagmiConfig}>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-            <FormField
-              control={form.control}
-              name="email"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel className="text-base">Email</FormLabel>
-                  <FormControl>
-                    <Input placeholder="example@example.com" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+            <div className="flex flex-col lg:flex-row gap-4">
+              <FormField
+                control={form.control}
+                name="first_name"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="text-base">First Name</FormLabel>
+                    <FormControl>
+                      <Input placeholder="Your First Name" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="last_name"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="text-base">Last Name</FormLabel>
+                    <FormControl>
+                      <Input placeholder="Your Last Name" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+
+            <div className="flex flex-col lg:flex-row gap-4">
+              <FormField
+                control={form.control}
+                name="phone"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="text-base">Phone Number</FormLabel>
+                    <FormControl>
+                      <Controller
+                        name="phone"
+                        control={form.control}
+                        rules={{
+                          required: false,
+                          validate: (value) => isValidPhoneNumber(value),
+                        }}
+                        render={({ field: { onChange, value } }) => (
+                          <PhoneInput
+                            value={value}
+                            onChange={onChange}
+                            defaultCountry="TH"
+                            id="phone-input"
+                          />
+                        )}
+                      />
+                    </FormControl>
+                    {form.formState.errors["phone"] && (
+                      <p className="text-sm font-medium text-destructive">
+                        Invalid Phone
+                      </p>
+                    )}
+                    {/* <FormMessage /> */}
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="text-base">Email</FormLabel>
+                    <FormControl>
+                      <Input placeholder="example@example.com" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+
+            <div className="flex flex-col lg:flex-row gap-4">
+              <FormField
+                control={form.control}
+                name="business_name"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="text-base">Business Name</FormLabel>
+                    <FormControl>
+                      <Input placeholder="Ozura" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="website"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="text-base">Website</FormLabel>
+                    <FormControl>
+                      <Input placeholder="Ozura.io" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
 
             <FormField
               control={form.control}
@@ -146,7 +250,7 @@ export function RegisterUser() {
           <ConnectWallet />
         </Form>
       </WagmiConfig>
-      <Web3Modal projectId={projectId} ethereumClient={ethereumClient} />
+      {/* <Web3Modal projectId={projectId} ethereumClient={ethereumClient} /> */}
     </>
   );
 }

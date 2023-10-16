@@ -118,6 +118,9 @@ const MyAccount = (props: Props) => {
             <div className="text-md text-center text-sm opacity-[0.6] break-words">
               {user?.email ? user?.email : user?.walletAddress}
             </div>
+            <Button variant="default" size={"full"}>
+              Connect Wallet
+            </Button>
 
             <Separator className="my-6" />
 
@@ -137,6 +140,17 @@ const MyAccount = (props: Props) => {
               <Copy size={15} />
             </div>
           </div>
+
+          {/* <div className="space-y-8">
+            <Button
+              variant="default"
+              size={"full"}
+              className="mt-6"
+              
+            >
+              Connect Wallet
+            </Button>
+          </div> */}
 
           <Button
             variant="default"

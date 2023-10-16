@@ -31,15 +31,14 @@ export default function AuthenticationPage() {
               <Image src={logo} alt="logo" />
             </Link>
           </div>
-          <div className="absolute bottom-[30px] left-[50px] mr-[50px] z-20 mt-auto">
+          {/* <div className="absolute bottom-[30px] left-[50px] mr-[50px] z-20 mt-auto">
             <blockquote className="space-y-2">
               <p className="text-lg">
                 The all-in-one solution for merchants looking to expand their
                 payment capability.
               </p>
-              {/* <footer className="text-sm">Sofia Davis</footer> */}
             </blockquote>
-          </div>
+          </div> */}
 
           <div className="w-50% overflow-hidden h-screen overflow-x-hidden flex bg-color-3 flex-wrap relative">
             <div className="w-1/2 h-1/2 flex rounded-[10%_90%_80%_20%/20%_20%_80%_60%] animate-flip bg-color-1"></div>

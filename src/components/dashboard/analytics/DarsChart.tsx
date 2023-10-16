@@ -45,7 +45,7 @@ export function DARSChart({ stats }: DARSChartProps) {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Transactions</CardTitle>
+        <CardTitle>Blockchain Fees</CardTitle>
         <CardDescription>{`${stats.transactions.change}% from last month`}</CardDescription>
       </CardHeader>
       <CardContent className="pb-4">
