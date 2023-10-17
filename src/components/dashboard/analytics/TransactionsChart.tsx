@@ -1,5 +1,12 @@
 import { useTheme } from "next-themes";
-import { Line, LineChart, ResponsiveContainer, Tooltip, XAxis } from "recharts";
+import {
+  LineChart,
+  Line,
+  ResponsiveContainer,
+  Tooltip,
+  XAxis,
+  YAxis,
+} from "recharts";
 import {
   Card,
   CardContent,
@@ -7,6 +14,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+
 // Define a TypeScript interface for the Stats object
 interface Stats {
   feesCollected: {
@@ -27,13 +35,21 @@ interface Stats {
   };
   revenueGraphData: {
     month: number;
-    revenue: number;
+    totalRevenue: number;
   }[];
   transactionsGraphData: {
     month: number;
-    count: number;
+    totalTransactions: number;
   }[];
+  last5Transactions: any;
+  paymentMethodPercentages: {
+    USD: number;
+    ETH: number;
+    USDT: number;
+  };
+  totalRevenue: number;
 }
+
 // Modify the component to accept the Stats interface as props
 interface TransactionsChartProps {
   stats: Stats;
@@ -41,6 +57,19 @@ interface TransactionsChartProps {
 
 export function TransactionsChart({ stats }: TransactionsChartProps) {
   const { theme: mode } = useTheme();
+
+  const extendedData = [...stats.transactionsGraphData];
+  if (extendedData.length < 10) {
+    const today = new Date();
+    for (let i = 1; i <= 10 - extendedData.length; i++) {
+      const date = new Date(today);
+      date.setMonth(date.getMonth() - i);
+      extendedData.unshift({
+        month: date.getMonth(),
+        totalTransactions: date.getMonth(),
+      });
+    }
+  }
 
   return (
     <Card>
@@ -52,17 +81,22 @@ export function TransactionsChart({ stats }: TransactionsChartProps) {
         </CardDescription>
       </CardHeader>
       <CardContent className="pb-4">
-        <div className="h-[150px]">
+        <div className="h-[300px]">
           <ResponsiveContainer width="100%" height="100%">
             <LineChart
-              data={stats.transactionsGraphData}
+              data={extendedData}
               margin={{
                 top: 5,
                 right: 10,
                 left: 10,
-                bottom: 0,
+                bottom: 30, // Add some bottom margin for XAxis labels
               }}
             >
+              <XAxis
+                dataKey="month" // Update dataKey to match the month property in stats.transactionsGraphData
+                style={{ fontSize: "12px", color: "#fff", opacity: 1 }}
+              />
+              <YAxis style={{ fontSize: "12px", color: "#fff", opacity: 1 }} />
               <Tooltip
                 content={({ active, payload }) => {
                   if (active && payload && payload.length) {
@@ -71,7 +105,7 @@ export function TransactionsChart({ stats }: TransactionsChartProps) {
                         <div className="grid grid-cols-2 gap-2">
                           <div className="flex flex-col">
                             <span className="text-[0.70rem] uppercase text-muted-foreground">
-                              Average
+                              Total Transactions
                             </span>
                             <span className="font-bold text-muted-foreground">
                               {payload[0].value}
@@ -85,13 +119,9 @@ export function TransactionsChart({ stats }: TransactionsChartProps) {
                   return null;
                 }}
               />
-              <XAxis
-                dataKey="month" // Update dataKey to match the month property in stats.transactionsGraphData
-                style={{ fontSize: "12px", color: "#fff", opacity: 1 }}
-              />
               <Line
                 type="monotone"
-                dataKey="revenue" // Update dataKey to match the revenue property in stats.transactionsGraphData
+                dataKey="totalTransactions" // Update dataKey to match the count property in stats.transactionsGraphData
                 strokeWidth={2}
                 activeDot={{
                   r: 8,

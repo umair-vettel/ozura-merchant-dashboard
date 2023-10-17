@@ -11,6 +11,8 @@ import Link from "next/link";
 import CurrencyPieChart from "@/components/dashboard/analytics/CurrencyPieChart";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import moment from "moment";
+import { RevenueChart } from "./analytics/RevenueChart";
 interface Stats {
   feesCollected: {
     current: number;
@@ -30,11 +32,11 @@ interface Stats {
   };
   revenueGraphData: {
     month: number;
-    revenue: number;
+    totalRevenue: number;
   }[];
   transactionsGraphData: {
     month: number;
-    count: number;
+    totalTransactions: number;
   }[];
   last5Transactions: any;
   paymentMethodPercentages: {
@@ -100,10 +102,34 @@ export default function Dashboard() {
       console.log(err);
     }
   };
+  async function fetchGasData() {
+    try {
+      const startDate = moment().subtract(30, "days").format("YYYY-MM-DD");
+      const endDate = moment().format("YYYY-MM-DD");
 
+      // Make a request to an API that provides historical gas prices for Matic (Polygon)
+      const fetch = await axios.get(
+        `https://api.coingecko.com/api/v3/coins/polygon/gas_chart?vs_currencies=usd&from=${startDate}&to=${endDate}`,
+      );
+
+      // Extract the gas price data from the response
+      const gasPriceData = fetch.data["usd"];
+
+      const response = gasPriceData;
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      const data = await response.json(); // Parse the JSON response
+      console.log("Gas price data:", data);
+      // Use the data as needed in your application
+    } catch (error) {
+      console.error("Error fetching gas data:", error);
+    }
+  }
   useEffect(() => {
     getStats();
     getUserData();
+    fetchGasData();
   }, []);
   return (
     <>
@@ -239,12 +265,7 @@ export default function Dashboard() {
         </div>
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-8">
           <Card className="col-span-4">
-            <CardHeader>
-              <CardTitle>Revenue</CardTitle>
-            </CardHeader>
-            <CardContent className="pl-2">
-              <Overview data={stats.revenueGraphData} />
-            </CardContent>
+            <RevenueChart stats={stats} />
           </Card>
 
           <div className="col-span-4 md:col-span-3 lg:col-span-4 space-y-4">

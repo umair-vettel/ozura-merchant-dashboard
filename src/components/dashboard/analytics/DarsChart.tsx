@@ -27,13 +27,21 @@ interface Stats {
   };
   revenueGraphData: {
     month: number;
-    revenue: number;
+    totalRevenue: number;
   }[];
   transactionsGraphData: {
     month: number;
-    count: number;
+    totalTransactions: number;
   }[];
+  last5Transactions: any;
+  paymentMethodPercentages: {
+    USD: number;
+    ETH: number;
+    USDT: number;
+  };
+  totalRevenue: number;
 }
+
 // Modify the component to accept the Stats interface as props
 interface DARSChartProps {
   stats: Stats;
