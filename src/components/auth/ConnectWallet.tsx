@@ -61,10 +61,10 @@ export const ConnectWallet = () => {
   return (
     <>
       <div className="flex flex-col justify-center items-center">
-        <div>OR</div>
+        {/* <div>OR</div>
         <div>Register Using Web3</div>
         <br />
-        <Web3Button />
+        <Web3Button /> */}
       </div>
       {account.isConnected ? (
         <Button

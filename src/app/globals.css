@@ -250,3 +250,36 @@
     background-position: 0% 82%;
   }
 }
+
+.ellipsis1 {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.PhoneInput {
+  --tw-ring-offset-color: hsl(var(--background));
+  --tw-space-y-reverse: 0;
+  margin-top: calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(0.5rem * var(--tw-space-y-reverse));
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  border: 1px solid hsl(var(--input));
+  border-radius: calc(var(--radius) - 2px);
+  max-width: 213px;
+}
+
+@media only screen and (max-width: 1024px) {
+  .PhoneInput {
+    max-width: 100%;
+    width: 100%;
+  }
+}
+
+.PhoneInput input {
+  border: 0px;
+  outline: none;
+  background: transparent !important;
+}
