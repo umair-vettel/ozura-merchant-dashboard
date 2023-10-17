@@ -48,7 +48,10 @@ export function RevenueChart({ stats }: RevenueChartProps) {
     <Card>
       <CardHeader>
         <CardTitle>Revenue</CardTitle>
-        <CardDescription>{`${stats.revenue.change}% from last month`}</CardDescription>
+        <CardDescription>
+          {stats.revenue.change < 100 &&
+            `${stats.revenue.change}% from last month`}
+        </CardDescription>
       </CardHeader>
       <CardContent className="pb-4">
         <div className="h-[150px]">

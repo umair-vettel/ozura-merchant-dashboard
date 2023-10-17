@@ -499,14 +499,14 @@ export default function DemoPage() {
               merchantId: item.merchantId,
               transactionHash: item.transactionHash,
               buyer: `${item.userRefId.slice(0, 4)}....${item.userRefId.slice(
-                -4
+                -4,
               )}`,
               productName: item.productName,
               quantity: item.quantity,
               amount:
                 item.paymentMethod == "ETH"
-                  ? (item.amountInETH / 10 ** 18)?.toFixed(2) + " ETH"
-                  : "$ " + (item.amountInUSD / 10 ** 6)?.toFixed(2),
+                  ? (item.amountInETH / 10 ** 18)?.toFixed(4) + " ETH"
+                  : (item.amountInUSD / 10 ** 6)?.toFixed(2) + " USDT",
               transactionFees: item.merchantProcessingFees + "%",
               paymentMode:
                 item.paymentMethod != null
@@ -526,7 +526,7 @@ export default function DemoPage() {
               transactionHash: item.transactionHash,
               withdrawalWallet: `${item.depositAddress.slice(
                 0,
-                4
+                4,
               )}....${item.depositAddress.slice()}`,
               amount:
                 item.paymentMethod == "ETH"

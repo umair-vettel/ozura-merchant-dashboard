@@ -25,7 +25,7 @@ const formSchema = z.object({
   item_name: z.string().min(2, {
     message: "Item name must be at least 2 characters.",
   }),
-  item_cost: z.string(),
+  item_cost: z.string().optional(),
   processing_fee: z.string(),
 });
 

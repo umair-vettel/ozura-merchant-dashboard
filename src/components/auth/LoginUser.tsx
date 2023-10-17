@@ -140,7 +140,7 @@ export function LoginUser() {
               Log In
             </Button>
           </form>
-          <ConnectWallet />
+          {/*  <ConnectWallet /> */}
         </Form>
       </WagmiConfig>
       <Web3Modal projectId={projectId} ethereumClient={ethereumClient} />

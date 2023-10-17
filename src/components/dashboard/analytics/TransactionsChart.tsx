@@ -46,7 +46,10 @@ export function TransactionsChart({ stats }: TransactionsChartProps) {
     <Card>
       <CardHeader>
         <CardTitle>Transactions</CardTitle>
-        <CardDescription>{`${stats.transactions.change}% from last month`}</CardDescription>
+        <CardDescription>
+          {stats.transactions.change < 100 &&
+            `${stats.transactions.change}% from last month`}
+        </CardDescription>
       </CardHeader>
       <CardContent className="pb-4">
         <div className="h-[150px]">

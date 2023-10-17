@@ -135,9 +135,13 @@ export default function Dashboard() {
               <div className="text-2xl font-bold">
                 ${stats.feesCollected.current.toLocaleString()}
               </div>
-              <p className="text-xs text-muted-foreground">
-                +{stats.feesCollected.change.toLocaleString()}% from last month
-              </p>
+              {stats.feesCollected.change == 0 &&
+                stats.feesCollected.change < 100 && (
+                  <p className="text-xs text-muted-foreground">
+                    +{stats.feesCollected.change.toLocaleString()}% from last
+                    month
+                  </p>
+                )}
             </CardContent>
           </Card>
           <Card>
@@ -164,9 +168,11 @@ export default function Dashboard() {
               <div className="text-2xl font-bold">
                 ${stats.revenue.current.toLocaleString()}
               </div>
-              <p className="text-xs text-muted-foreground">
-                +{stats.revenue.change.toLocaleString()}% from last month
-              </p>
+              {stats.revenue.change < 100 && (
+                <p className="text-xs text-muted-foreground">
+                  +{stats.revenue.change.toLocaleString()}% from last month
+                </p>
+              )}
             </CardContent>
           </Card>
           <Card>
@@ -193,9 +199,11 @@ export default function Dashboard() {
               <div className="text-2xl font-bold">
                 {stats.transactions.current.toLocaleString()}
               </div>
-              <p className="text-xs text-muted-foreground">
-                +{stats.transactions.change.toLocaleString()}% from last month
-              </p>
+              {stats.transactions.change < 100 && (
+                <p className="text-xs text-muted-foreground">
+                  +{stats.transactions.change.toLocaleString()}% from last month
+                </p>
+              )}
             </CardContent>
           </Card>
           <Card>
@@ -220,10 +228,12 @@ export default function Dashboard() {
               <div className="text-2xl font-bold">
                 ${stats.averageOrderValue.current.toLocaleString()}
               </div>
-              <p className="text-xs text-muted-foreground">
-                +{stats.averageOrderValue.change.toLocaleString()} since last
-                month
-              </p>
+              {stats.averageOrderValue.change < 100 && (
+                <p className="text-xs text-muted-foreground">
+                  +{stats.averageOrderValue.change.toLocaleString()}% from last
+                  month
+                </p>
+              )}
             </CardContent>
           </Card>
         </div>

@@ -75,12 +75,25 @@ export function RegisterUser() {
     e.preventDefault();
 
     console.log("Success:", values);
-    const { email, password } = values;
+    const {
+      email,
+      password,
+      first_name,
+      last_name,
+      phone,
+      business_name,
+      website,
+    } = values;
+
     try {
       const path = `${process.env.NEXT_PUBLIC_API_URL}/users/register-merchant`;
       const body = {
         email: email,
         password: password,
+        name: first_name + " " + last_name,
+        phoneNo: phone,
+        businessName: business_name,
+        website: website,
       };
       const res = await axios.post(path, body);
 
@@ -247,7 +260,7 @@ export function RegisterUser() {
               Register
             </Button>
           </form>
-          <ConnectWallet />
+          {/* <ConnectWallet /> */}
         </Form>
       </WagmiConfig>
       {/* <Web3Modal projectId={projectId} ethereumClient={ethereumClient} /> */}
