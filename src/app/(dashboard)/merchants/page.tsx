@@ -193,8 +193,11 @@ export default async function DemoPage() {
 
   return (
     <>
-      <div className="flex items-center justify-between space-y-2">
-        <h2 className="text-3xl font-bold tracking-tight">Users</h2>
+      <div className="flex flex-col  space-y-2">
+        <h2 className="text-3xl font-bold tracking-tight">All Merchants</h2>
+        <p className="text-sm text-muted-foreground">
+          {`Manage Merchant's Processing fee`}
+        </p>
       </div>
       <div className=" mx-auto ">
         <DataTable columns={columns} data={data} />

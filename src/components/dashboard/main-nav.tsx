@@ -6,10 +6,10 @@ import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 
 const navItems = [
-  {
-    title: "Overview",
-    href: "/",
-  },
+  // {
+  //   title: "Overview",
+  //   href: "/",
+  // },
   {
     title: "Transactions",
     href: "/transactions",
@@ -22,10 +22,13 @@ const navItems = [
     title: "My Account",
     href: "/account",
   },
-  // {
-  //   title: "Settings",
-  //   href: "/profile/account",
-  // },
+];
+
+const adminNavItems = [
+  {
+    title: "Merchants",
+    href: "/merchants",
+  },
 ];
 
 export function MainNav({

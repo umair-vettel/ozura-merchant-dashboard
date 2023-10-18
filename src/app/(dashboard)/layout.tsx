@@ -1,3 +1,4 @@
+"use client";
 import { Toaster } from "@/components/ui/toaster";
 import "../globals.css";
 import type { Metadata } from "next";
@@ -16,7 +17,10 @@ import {
   AppWindow,
   ArrowLeftRight,
   LayoutDashboard,
+  LogOutIcon,
   Settings,
+  UserCog2,
+  Users,
 } from "lucide-react";
 import CheckAuth from "@/hooks/checkAuth";
 const inter = Inter({ subsets: ["latin"] });
@@ -91,7 +95,7 @@ export default function RootLayout({
                         className="m-auto"
                       />
 
-                      <div className="links flex flex-col space-y-10 mt-[5rem] pt-6 pb-6 gap-[2rem] items-center">
+                      <div className="links flex flex-col space-y-9 mt-[5rem] pt-6 pb-6 gap-[2rem] items-center">
                         <Link href="/">
                           <LayoutDashboard size={24} />
                         </Link>
@@ -107,6 +111,20 @@ export default function RootLayout({
                         <Link href="/account">
                           <Settings size={24} />
                         </Link>
+
+                        <Link href="/merchants">
+                          <Users size={24} />
+                        </Link>
+
+                        <div
+                          className="cursor-pointer"
+                          onClick={() => {
+                            localStorage.removeItem("user");
+                            window.open("/login", "_self");
+                          }}
+                        >
+                          <LogOutIcon />
+                        </div>
                       </div>
                     </div>
                     <div className="flex-1 w-full pl-[75px] md:pl-[130px] pb-6 pt-3 md:pt-7">
