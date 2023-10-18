@@ -1,4 +1,3 @@
-"use client";
 import { Toaster } from "@/components/ui/toaster";
 import "../globals.css";
 import type { Metadata } from "next";
@@ -116,13 +115,7 @@ export default function RootLayout({
                           <Users size={24} />
                         </Link>
 
-                        <div
-                          className="cursor-pointer"
-                          onClick={() => {
-                            localStorage.removeItem("user");
-                            window.open("/login", "_self");
-                          }}
-                        >
+                        <div className="cursor-pointer">
                           <LogOutIcon />
                         </div>
                       </div>
