@@ -1,9 +1,11 @@
-import { Payment, columns } from "./columns";
-import { DataTable } from "@components/ui/data-table";
+import { DataTable } from "@/components/ui/data-table";
+import React from "react";
+import { columns } from "./columns";
 
-async function getData(): Promise<Payment[]> {
-  // Fetch data from your API here.
-  return [
+type Props = {};
+
+const WalletsTable = (props: Props) => {
+  const data = [
     {
       id: "728ed52f",
       amount: 55100,
@@ -11,7 +13,7 @@ async function getData(): Promise<Payment[]> {
       email: "usk@cc.com",
     },
     {
-      id: "1258cc78",
+      id: "728ed52f",
       amount: 100,
       status: "pending",
       email: "m@example.com",
@@ -186,19 +188,11 @@ async function getData(): Promise<Payment[]> {
     },
     // ...
   ];
-}
-
-export default async function DemoPage() {
-  const data = await getData();
-
   return (
-    <>
-      <div className="flex items-center justify-between space-y-2">
-        <h2 className="text-3xl font-bold tracking-tight">Users</h2>
-      </div>
-      <div className=" mx-auto ">
-        <DataTable columns={columns} data={data} />
-      </div>
-    </>
+    <div>
+      <DataTable columns={columns} data={data as any} />
+    </div>
   );
-}
+};
+
+export default WalletsTable;

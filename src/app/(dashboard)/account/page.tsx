@@ -1,6 +1,6 @@
 import { Separator } from "@/components/ui/separator";
 import { ProfileForm } from "./profile-form";
-import MyAccount from "@/components/dashboard/MyAccount";
+import MyAccount from "@/components/dashboard/account/MyAccount";
 
 export default function Account() {
   return (
