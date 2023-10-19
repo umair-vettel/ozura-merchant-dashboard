@@ -1,7 +1,9 @@
 import { DataTable } from "@/components/ui/data-table";
 import React from "react";
-import { columns } from "./columns";
-
+import { vaultsColumns } from "./columns";
+import { AuthPost } from "@/services/apiService";
+import { useEffect, useState } from "react";
+import { toast } from "@/components/ui/use-toast";
 type Props = {};
 
 const WalletsTable = (props: Props) => {
@@ -188,9 +190,47 @@ const WalletsTable = (props: Props) => {
     },
     // ...
   ];
+  const [vaults, setVaults] = useState<any[]>([]);
+  const getMerchantWallets = async () => {
+    try {
+      const path = `${process.env.NEXT_PUBLIC_API_URL}/users/getAllVaults`;
+      const res = await AuthPost(path, {});
+      if (res.status == 200) {
+        console.log(res.data);
+        const { vaults } = res.data.data;
+        setVaults(
+          vaults.map((vault: any, index: any) => ({
+            ...vault,
+            index: index + 1,
+          })),
+        );
+        return;
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    getMerchantWallets();
+  }, []);
+  const createNewWallet = async () => {
+    try {
+      const path = `${process.env.NEXT_PUBLIC_API_URL}/users/createNewVault`;
+      const res = await AuthPost(path, { vaultName: "Test Vault" });
+      if (res.status == 200) {
+        getMerchantWallets();
+        toast({
+          variant: "success",
+          description: "New Wallet Created",
+        });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <div>
-      <DataTable columns={columns} data={data as any} />
+      <DataTable columns={vaultsColumns} data={vaults as any} />
     </div>
   );
 };

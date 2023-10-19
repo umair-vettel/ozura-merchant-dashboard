@@ -82,3 +82,47 @@ export const columns: ColumnDef<Payment>[] = [
     },
   },
 ];
+
+export const vaultsColumns: ColumnDef<any>[] = [
+  {
+    accessorKey: "index",
+    header: "Index",
+    cell: ({ row }) => {
+      const index = row.original.index;
+      return <div className="font-medium">{index}</div>;
+    },
+  },
+  {
+    accessorKey: "fireblocksVaultId",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Vault ID" />
+    ),
+  },
+  {
+    accessorKey: "vaultName",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Wallet Name" />
+    ),
+  },
+  {
+    accessorKey: "depositAddress",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Deposit Address" />
+    ),
+  },
+  {
+    accessorKey: "createdAt",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Created At" />
+    ),
+    cell: ({ row }) => {
+      const createdAt: any = row.getValue("createdAt");
+      const formatted = new Intl.DateTimeFormat("en-US", {
+        dateStyle: "medium",
+        timeStyle: "short",
+      }).format(new Date(createdAt));
+
+      return <div className="font-medium">{formatted}</div>;
+    },
+  },
+];

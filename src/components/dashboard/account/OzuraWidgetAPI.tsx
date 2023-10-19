@@ -124,12 +124,12 @@ const OzuraWidgetAPI = (props: Props) => {
               In the request body, pass the following parameters as JSON:
               {/* write code as code style */}
               <span className="block text-sm text-muted-foreground mt-2">
-                "productName": Name of the product,
-                <br /> "productPrice": Price of the product (Null if any amount
+                productName: Name of the product,
+                <br /> productPrice: Price of the product (Null if any amount
                 can be accepted),
-                <br /> "merchantProcessingFees": Processing Fees,
+                <br /> merchantProcessingFees: Processing Fees,
                 <br />
-                "imageUrl": URL of image of the product (Null if no image is
+                imageUrl: URL of image of the product (Null if no image is
                 available),
               </span>
             </li>
