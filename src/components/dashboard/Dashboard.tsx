@@ -13,6 +13,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import moment from "moment";
 import { RevenueChart } from "./analytics/RevenueChart";
+import { NewUsersChart } from "./analytics/NewUsersChart";
 interface Stats {
   feesCollected: {
     current: number;
@@ -45,6 +46,10 @@ interface Stats {
     USDT: number;
   };
   totalRevenue: number;
+  newUsersChartData: {
+    month: string;
+    count: number;
+  }[];
 }
 
 export default function Dashboard() {
@@ -74,6 +79,7 @@ export default function Dashboard() {
       USDT: 0,
     },
     totalRevenue: 0,
+    newUsersChartData: [],
   });
   const [userData, setUserData] = useState<any>({});
   const getStats = async () => {
@@ -270,7 +276,7 @@ export default function Dashboard() {
 
           <div className="col-span-4 md:col-span-3 lg:col-span-4 space-y-4">
             <TransactionsChart stats={stats} />
-            <DARSChart stats={stats} />
+            <NewUsersChart stats={stats} />
           </div>
         </div>
 
