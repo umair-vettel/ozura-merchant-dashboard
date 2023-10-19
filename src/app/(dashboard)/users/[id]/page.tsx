@@ -1,4 +1,4 @@
-import UserDetailsPage from "@/components/dashboard/users/UserDetailsPage";
+import UserDetailsPage from "@/components/dashboard/Users/UserDetailsPage";
 
 export default function DemoPage({ params }: any) {
   return (
