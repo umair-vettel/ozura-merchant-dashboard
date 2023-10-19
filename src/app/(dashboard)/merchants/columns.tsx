@@ -18,12 +18,23 @@ export type Payment = {
 
 export const columns: ColumnDef<Payment>[] = [
   {
-    accessorKey: "id",
+    accessorKey: "_id",
     header: "ID",
   },
   {
-    accessorKey: "status",
-    header: "Status",
+    accessorKey: "name",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Email" />
+    ),
+    cell: ({ row }) => {
+      const name: any = row.getValue("name");
+      const id = row.getValue("_id");
+      return (
+        <Link href={`/dashboard/merchants/${id}`}>
+          <div className="font-medium">{name == null ? "N/A" : name}</div>
+        </Link>
+      );
+    },
   },
   {
     accessorKey: "email",
@@ -32,24 +43,15 @@ export const columns: ColumnDef<Payment>[] = [
     ),
   },
   {
-    accessorKey: "amount",
+    accessorKey: "processingFee",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Amount" />
+      <DataTableColumnHeader column={column} title="Processing Fee" />
     ),
-    cell: ({ row }) => {
-      const amount = parseFloat(row.getValue("amount"));
-      const formatted = new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: "USD",
-      }).format(amount);
-
-      return <div className="font-medium">{formatted}</div>;
-    },
   },
   {
     id: "actions",
     cell: ({ row }) => {
-      const merchantID = row.getValue("id");
+      const merchantID = row.getValue("_id");
 
       return <EditTransactionFeeModal merchantID={merchantID as string} />;
     },
