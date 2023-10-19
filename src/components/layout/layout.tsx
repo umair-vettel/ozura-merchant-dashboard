@@ -71,9 +71,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                         <Link href="/users">
                           <Users size={24} />
                         </Link>
-                        <Link href="/merchants">
-                          <UserCog2 size={24} />
-                        </Link>
 
                         <div className="cursor-pointer">
                           <LogOutIcon
