@@ -13,12 +13,27 @@ const OzuraWidgetAPI = (props: Props) => {
   const [apiKey, setApiKey] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(true);
   const codeString = `
-    (num) => num + 1;
-    apikey = "454cads45cds15cads";
-    if(apikey){
-      num + 1;
-    } 
-  `;
+import axios from "axios";
+
+const createPaymentLink = async () => {
+  const path = "https://ozura.vetteltechnologies.com/widgets/api";
+  const headers = {
+    apikey: "YOUR_API_KEY",
+    Accept: "application/json",
+    "Content-Type": "application/json",
+  };
+  const body = {
+    productName: "Product Name",
+    productPrice: 1,
+    merchantProcessingFees: 0,
+    imageUrl: "https://ozura.io/ozura.png",
+  };
+  const res = await axios.post(path, body, { headers });
+  if (res.status === 200) {
+    const { widgetUrl } = res.data.data;
+    return widgetUrl;
+  }
+}`;
   const getAPIKey = async () => {
     try {
       const path = `${process.env.NEXT_PUBLIC_API_URL}/users/getAPIKey`;
