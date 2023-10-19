@@ -118,7 +118,7 @@ const OzuraWidgetAPI = (props: Props) => {
                 <span
                   onClick={() =>
                     copyEndpointToClipboard(
-                      "https://ozura.vetteltechnologies.com/widgets/api"
+                      "https://ozura.vetteltechnologies.com/widgets/api",
                     )
                   }
                   className="flex text-sm gap-2 cursor-pointer flex-wrap pt-2"

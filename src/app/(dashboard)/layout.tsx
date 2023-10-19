@@ -66,7 +66,7 @@ export default function RootLayout({
 }) {
   return (
     <CheckAuth>
-      <Layout children={children} />
+      <Layout>{children}</Layout>
     </CheckAuth>
   );
 }
