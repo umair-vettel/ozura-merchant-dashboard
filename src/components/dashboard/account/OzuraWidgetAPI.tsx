@@ -16,7 +16,7 @@ const OzuraWidgetAPI = (props: Props) => {
 import axios from "axios";
 
 const createPaymentLink = async () => {
-  const path = "https://ozura.vetteltechnologies.com/widgets/api";
+  const path = "https://api.ozurapay.com/widgets/api";
   const headers = {
     apikey: "YOUR_API_KEY",
     Accept: "application/json",
@@ -133,13 +133,13 @@ const createPaymentLink = async () => {
                 <span
                   onClick={() =>
                     copyEndpointToClipboard(
-                      "https://ozura.vetteltechnologies.com/widgets/api",
+                      "https://api.ozurapay.com/widgets/api",
                     )
                   }
                   className="flex text-sm gap-2 cursor-pointer flex-wrap pt-2"
                 >
                   <div className="break-words block ellipsis1">
-                    https://ozura.vetteltechnologies.com/widgets/api
+                    https://api.ozurapay.com/widgets/api
                   </div>
                   <Copy size={15} />
                 </span>
