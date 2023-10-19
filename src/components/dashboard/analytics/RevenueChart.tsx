@@ -89,6 +89,7 @@ export function RevenueChart({ stats }: RevenueChartProps) {
               />
               <YAxis style={{ fontSize: "12px", color: "#fff", opacity: 1 }} />
               <Tooltip
+                cursor={{ fill: "transparent" }}
                 content={({ active, payload }) => {
                   if (active && payload && payload.length) {
                     return (

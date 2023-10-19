@@ -129,7 +129,7 @@ const MyAccount = (props: Props) => {
                 <div className="text-md text-center text-sm opacity-[0.6] break-words">
                   {user?.email ? user?.email : user?.walletAddress}
                 </div>
-                <Button variant="default" size={"full"}>
+                <Button variant="default" size={"full"} className="mt-3">
                   Connect Wallet
                 </Button>
 
