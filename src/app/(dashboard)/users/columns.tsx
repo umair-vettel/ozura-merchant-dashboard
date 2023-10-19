@@ -27,9 +27,7 @@ export const columns: ColumnDef<Payment>[] = [
   },
   {
     accessorKey: "email",
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Email" />
-    ),
+    header: "Email",
     cell: ({ row }) => {
       const email = row.getValue("email");
 

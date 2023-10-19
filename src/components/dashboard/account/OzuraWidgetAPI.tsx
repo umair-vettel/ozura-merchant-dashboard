@@ -5,11 +5,20 @@ import axios from "axios";
 import { Copy } from "lucide-react";
 import { AuthPost } from "@/services/apiService";
 import { toast } from "@/components/ui/use-toast";
+import SyntaxHighlighter from "react-syntax-highlighter";
+import { docco, a11yDark } from "react-syntax-highlighter/dist/esm/styles/hljs";
 type Props = {};
 
 const OzuraWidgetAPI = (props: Props) => {
   const [apiKey, setApiKey] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(true);
+  const codeString = `
+    (num) => num + 1;
+    apikey = "454cads45cds15cads";
+    if(apikey){
+      num + 1;
+    } 
+  `;
   const getAPIKey = async () => {
     try {
       const path = `${process.env.NEXT_PUBLIC_API_URL}/users/getAPIKey`;
@@ -97,48 +106,55 @@ const OzuraWidgetAPI = (props: Props) => {
           )}
         </div>
         <Separator />
-        <div>
-          <h3 className="text-lg font-medium">Documentation</h3>
-          <p className="text-sm text-muted-foreground mb-4">
-            Follow the steps below to use the Ozura Widget API:
-          </p>
-          <ol className="space-y-3 max-w-[1024px] !list-disc ml-3">
-            <li>
-              Use this endpoint to make requests:{" "}
-              <span
-                onClick={() =>
-                  copyEndpointToClipboard(
-                    "https://ozura.vetteltechnologies.com/widgets/api",
-                  )
-                }
-                className="flex text-sm gap-2 cursor-pointer flex-wrap pt-2"
-              >
-                <div className="break-words block ellipsis1">
-                  https://ozura.vetteltechnologies.com/widgets/api
-                </div>
-                <Copy size={15} />
-              </span>
-            </li>
-            <li>Pass the API Key in the request headers as apiKey</li>
-            <li>
-              In the request body, pass the following parameters as JSON:
-              {/* write code as code style */}
-              <span className="block text-sm text-muted-foreground mt-2">
-                productName: Name of the product,
-                <br /> productPrice: Price of the product (Null if any amount
-                can be accepted),
-                <br /> merchantProcessingFees: Processing Fees,
-                <br />
-                imageUrl: URL of image of the product (Null if no image is
-                available),
-              </span>
-            </li>
+        <div className="flex flex-col md:flex-row gap-3 flex-wrap">
+          <div className="md:w-[45%]">
+            <h3 className="text-lg font-medium">Documentation</h3>
+            <p className="text-sm text-muted-foreground mb-4">
+              Follow the steps below to use the Ozura Widget API:
+            </p>
+            <ol className="space-y-3 max-w-[1024px] !list-disc ml-3">
+              <li>
+                Use this endpoint to make requests:{" "}
+                <span
+                  onClick={() =>
+                    copyEndpointToClipboard(
+                      "https://ozura.vetteltechnologies.com/widgets/api"
+                    )
+                  }
+                  className="flex text-sm gap-2 cursor-pointer flex-wrap pt-2"
+                >
+                  <div className="break-words block ellipsis1">
+                    https://ozura.vetteltechnologies.com/widgets/api
+                  </div>
+                  <Copy size={15} />
+                </span>
+              </li>
+              <li>Pass the API Key in the request headers as apiKey</li>
+              <li>
+                In the request body, pass the following parameters as JSON:
+                {/* write code as code style */}
+                <span className="block text-sm text-muted-foreground mt-2">
+                  productName: Name of the product,
+                  <br /> productPrice: Price of the product (Null if any amount
+                  can be accepted),
+                  <br /> merchantProcessingFees: Processing Fees,
+                  <br />
+                  imageUrl: URL of image of the product (Null if no image is
+                  available),
+                </span>
+              </li>
 
-            <li>
-              In the response, you will get an widget URL which you can use to
-              accept the payments.
-            </li>
-          </ol>
+              <li>
+                In the response, you will get an widget URL which you can use to
+                accept the payments.
+              </li>
+            </ol>
+          </div>
+          <div className="md:w-[50%]">
+            <SyntaxHighlighter language="javascript" style={a11yDark}>
+              {codeString}
+            </SyntaxHighlighter>
+          </div>
         </div>
       </div>
     </div>
