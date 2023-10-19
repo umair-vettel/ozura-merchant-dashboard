@@ -11,14 +11,18 @@ export default function MerchantPage() {
     const response = await AuthGet(path);
     if (response.status === 200) {
       console.log(response.data.data.merchants);
-      setMerchants(response.data.data.merchants);
+      setMerchants(
+        response.data.data.merchants.map((item: any, index: any) => {
+          return {
+            ...item,
+            refresh: getMerchantsData,
+          };
+        }),
+      );
     }
   }
   useEffect(() => {
     getMerchantsData();
-    setInterval(() => {
-      getMerchantsData();
-    }, 10000);
   }, []);
 
   return (

@@ -14,6 +14,7 @@ export type Payment = {
   amount: number;
   status: "pending" | "processing" | "success" | "failed";
   email: string;
+  refresh: () => void;
 };
 
 export const columns: ColumnDef<Payment>[] = [
@@ -48,12 +49,18 @@ export const columns: ColumnDef<Payment>[] = [
       <DataTableColumnHeader column={column} title="Processing Fee" />
     ),
   },
+
   {
     id: "actions",
     cell: ({ row }) => {
       const merchantID = row.getValue("_id");
 
-      return <EditTransactionFeeModal merchantID={merchantID as string} />;
+      return (
+        <EditTransactionFeeModal
+          merchantID={merchantID as string}
+          refreshData={row?.original?.refresh}
+        />
+      );
     },
   },
 ];

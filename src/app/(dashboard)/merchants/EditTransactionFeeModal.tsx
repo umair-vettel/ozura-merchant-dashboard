@@ -32,6 +32,7 @@ import { AuthPost } from "@/services/apiService";
 
 type Props = {
   merchantID: string;
+  refreshData: any;
 };
 
 const formSchema = z.object({
@@ -71,6 +72,8 @@ const EditTransactionFeeModal = (props: Props) => {
         title: `Fee Updates Sucessfully`,
       });
       setShowModal(false);
+      setLoading(false);
+      props.refreshData();
     } else {
       toast({
         variant: "destructive",
