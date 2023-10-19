@@ -216,25 +216,11 @@ const WalletsTable = (props: Props) => {
   useEffect(() => {
     getMerchantWallets();
   }, []);
-  const createNewWallet = async () => {
-    try {
-      const path = `${process.env.NEXT_PUBLIC_API_URL}/users/createNewVault`;
-      const res = await AuthPost(path, { vaultName: "Test Vault" });
-      if (res.status == 200) {
-        getMerchantWallets();
-        toast({
-          variant: "success",
-          description: "New Wallet Created",
-        });
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
+
   return (
     <div>
       <div className="flex md:justify-end md:mt-[-60px]">
-        <AddWalletModal />
+        <AddWalletModal refreshData={getMerchantWallets} />
       </div>
       <DataTable columns={vaultsColumns} data={vaults as any} />
     </div>
