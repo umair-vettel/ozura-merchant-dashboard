@@ -165,7 +165,7 @@ export default function Dashboard() {
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">
-                ${stats.feesCollected.current.toLocaleString()}
+                ${stats.feesCollected.current.toFixed(4).toLocaleString()}
               </div>
               {stats.feesCollected.change == 0 &&
                 stats.feesCollected.change < 100 && (
@@ -308,7 +308,7 @@ export default function Dashboard() {
           <div className="col-span-2 md:col-span-3 lg:col-span-3 space-y-4">
             <CurrencyPieChart
               data={stats?.paymentMethodPercentages}
-              totalRevenue={stats?.totalRevenue}
+              totalRevenue={stats?.totalRevenue.toFixed(4)}
             />
           </div>
         </div>
