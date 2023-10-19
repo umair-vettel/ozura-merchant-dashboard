@@ -94,7 +94,7 @@ export default function RootLayout({
                         className="m-auto"
                       />
 
-                      <div className="links flex flex-col space-y-9 mt-[5rem] pt-6 pb-6 gap-[2rem] items-center">
+                      <div className="links flex flex-col space-y-7 mt-[5rem] pt-6 pb-6 gap-[2rem] items-center">
                         <Link href="/">
                           <LayoutDashboard size={24} />
                         </Link>
@@ -111,7 +111,7 @@ export default function RootLayout({
                           <Settings size={24} />
                         </Link>
 
-                        <Link href="/merchants">
+                        <Link href="/users">
                           <Users size={24} />
                         </Link>
 
