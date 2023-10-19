@@ -32,6 +32,10 @@ export type Payment = {
   paymentMode: string;
   status: "ACCEPTED" | "REJECTED" | "COMPLETED" | "PROCESSING";
   createdAt: any;
+  amount: string;
+  name: string;
+  email: string;
+  buyer: string;
 };
 
 export type Withdrawal = {
@@ -73,8 +77,22 @@ export const columns: ColumnDef<Payment>[] = [
     header: "Merchant ID",
   }, */
   {
-    accessorKey: "buyer",
+    accessorKey: "email",
     header: "Paid By",
+    cell: ({ row }) => {
+      const email: any = row.original.email;
+      const name: any = row.original.name;
+      const buyer: any = row.original.buyer;
+      return (
+        <div className="flex items-center space-x-2">
+          <div className="flex flex-col">
+            <div className="font-medium">{name}</div>
+            <div className="text-gray-500">{email}</div>
+            <div className="text-gray-500">{buyer}</div>
+          </div>
+        </div>
+      );
+    },
   },
   {
     accessorKey: "productName",
