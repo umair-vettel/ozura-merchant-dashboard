@@ -62,6 +62,29 @@ export function RevenueChart({ stats }: RevenueChartProps) {
       });
     }
   }
+
+  const monthNames = [
+    "JAN",
+    "FEB",
+    "MAR",
+    "APR",
+    "MAY",
+    "JUN",
+    "JUL",
+    "AUG",
+    "SEP",
+    "OCT",
+    "NOV",
+    "DEC",
+  ];
+
+  // Custom tick formatter function
+  const formatXAxisTick = (value: any) => {
+    // Convert month number to abbreviated month name
+    const monthNumber = parseInt(value, 10);
+    return monthNames[monthNumber - 1]; // Subtract 1 to adjust for array indexing
+  };
+
   return (
     <Card>
       <CardHeader>
@@ -85,6 +108,7 @@ export function RevenueChart({ stats }: RevenueChartProps) {
             >
               <XAxis
                 dataKey="month"
+                tickFormatter={formatXAxisTick} // Use the custom tick formatter
                 style={{ fontSize: "12px", color: "#fff", opacity: 1 }}
               />
               <YAxis style={{ fontSize: "12px", color: "#fff", opacity: 1 }} />
