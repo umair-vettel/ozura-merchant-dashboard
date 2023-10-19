@@ -55,7 +55,7 @@ const MyAccount = (props: Props) => {
         setWalletBalance(res.data);
         const ethBalance = res.data.ethBalance;
         const usdValueForETH = await convertEthToUSD(
-          Number(ethBalance) / 10 ** 18
+          Number(ethBalance) / 10 ** 18,
         );
         setUSDValueForETH(Number(usdValueForETH));
       }
@@ -129,9 +129,9 @@ const MyAccount = (props: Props) => {
                 <div className="text-md text-center text-sm opacity-[0.6] break-words">
                   {user?.email ? user?.email : user?.walletAddress}
                 </div>
-                <Button variant="default" size={"full"} className="mt-3">
+                {/*        <Button variant="default" size={"full"} className="mt-3">
                   Connect Wallet
-                </Button>
+                </Button> */}
 
                 <Separator className="my-6" />
 
