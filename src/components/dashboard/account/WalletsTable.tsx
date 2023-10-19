@@ -1,6 +1,8 @@
 import { DataTable } from "@/components/ui/data-table";
 import React from "react";
 import { columns } from "./columns";
+import { Button } from "@/components/ui/button";
+import AddWalletModal from "./AddWalletModal";
 
 type Props = {};
 
@@ -190,6 +192,9 @@ const WalletsTable = (props: Props) => {
   ];
   return (
     <div>
+      <div className="flex md:justify-end md:mt-[-60px]">
+        <AddWalletModal />
+      </div>
       <DataTable columns={columns} data={data as any} />
     </div>
   );
