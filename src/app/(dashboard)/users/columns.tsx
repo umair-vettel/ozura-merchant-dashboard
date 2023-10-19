@@ -56,3 +56,71 @@ export const columns: ColumnDef<Payment>[] = [
     },
   },
 ];
+
+export const userColumns: ColumnDef<any>[] = [
+  {
+    accessorKey: "index",
+    header: "ID",
+    cell: ({ row }) => {
+      const index = row.getValue("index");
+      const email = row.getValue("email");
+      return (
+        <Link href={`/users/${email}`} className="font-medium">
+          {index as string}
+        </Link>
+      );
+    },
+  },
+  {
+    accessorKey: "email",
+    header: "Email",
+    cell: ({ row }) => {
+      const email = row.getValue("email");
+      return (
+        <Link href={`/users/${email}`} className="font-medium">
+          {email as string}
+        </Link>
+      );
+    },
+  },
+  {
+    accessorKey: "name",
+    header: "Name",
+    cell: ({ row }) => {
+      const name = row.getValue("name");
+      const email = row.getValue("email");
+      return (
+        <Link href={`/users/${email}`} className="font-medium">
+          {name as string}
+        </Link>
+      );
+    },
+  },
+  {
+    accessorKey: "amountInUSD",
+    header: "Amount in USD",
+    cell: ({ row }) => {
+      const amountInUSD = row.getValue("amountInUSD");
+      const email = row.getValue("email");
+      return (
+        <Link href={`/users/${email}`} className="font-medium">
+          {amountInUSD as string}
+        </Link>
+      );
+    },
+  },
+
+  {
+    accessorKey: "amountInETH",
+    header: "Amount in ETH",
+    cell: ({ row }) => {
+      const amountInETH = row.getValue("amountInETH");
+      const email = row.getValue("email");
+      return (
+        <Link href={`/users/${email}`} className="font-medium">
+          {amountInETH as string}
+        </Link>
+      );
+    },
+  },
+];
