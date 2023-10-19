@@ -4,6 +4,9 @@ import { vaultsColumns } from "./columns";
 import { AuthPost } from "@/services/apiService";
 import { useEffect, useState } from "react";
 import { toast } from "@/components/ui/use-toast";
+import { Button } from "@/components/ui/button";
+import AddWalletModal from "./AddWalletModal";
+
 type Props = {};
 
 const WalletsTable = (props: Props) => {
@@ -230,6 +233,9 @@ const WalletsTable = (props: Props) => {
   };
   return (
     <div>
+      <div className="flex md:justify-end md:mt-[-60px]">
+        <AddWalletModal />
+      </div>
       <DataTable columns={vaultsColumns} data={vaults as any} />
     </div>
   );
