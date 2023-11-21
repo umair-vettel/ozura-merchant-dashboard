@@ -522,8 +522,10 @@ export const metadata: Metadata = {
 export default function DemoPage() {
   //const data = await getData();
   const [widgetData, setWidgetData] = useState<any>([]);
+  const [loading, setLoading] = useState(true);
   const getWidgets = async () => {
     try {
+      setLoading(true);
       const path = `${process.env.NEXT_PUBLIC_API_URL}/widgets`;
       const userData = localStorage.getItem("user") || "";
       const user = JSON.parse(userData);
@@ -551,9 +553,11 @@ export default function DemoPage() {
           });
         console.log(merchantWidgets);
         setWidgetData(merchantWidgets);
+        setLoading(false);
       }
     } catch (error) {
       console.log(error);
+      setLoading(false);
     }
   };
   useEffect(() => {
@@ -564,13 +568,13 @@ export default function DemoPage() {
     <>
       <div className="flex  items-center md:flex-row justify-between space-y-2">
         <h2 className="text-2xl md:text-3xl  font-bold tracking-tight  md:mb-0">
-          Payment Links
+          Manage Merchant
         </h2>
 
         <CreateWidget getData={getWidgets} />
       </div>
       <div className=" mx-auto ">
-        <DataTable columns={columns} data={widgetData} />
+        <DataTable columns={columns} data={widgetData} loading={loading} />
       </div>
     </>
   );

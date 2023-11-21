@@ -6,19 +6,27 @@ import { useEffect, useState } from "react";
 import { columns } from "@/app/(dashboard)/merchants/columns";
 export default function MerchantPage() {
   const [merchants, setMerchants] = useState([]);
+  const [loading, setLoading] = useState(false);
   async function getMerchantsData(): Promise<any> {
-    const path = `${process.env.NEXT_PUBLIC_API_URL}/users/merchants`;
-    const response = await AuthGet(path);
-    if (response.status === 200) {
-      console.log(response.data.data.merchants);
-      setMerchants(
-        response.data.data.merchants.map((item: any, index: any) => {
-          return {
-            ...item,
-            refresh: getMerchantsData,
-          };
-        }),
-      );
+    try {
+      setLoading(true);
+      const path = `${process.env.NEXT_PUBLIC_API_URL}/users/merchants`;
+      const response = await AuthGet(path);
+      if (response.status === 200) {
+        console.log(response.data.data.merchants);
+        setMerchants(
+          response.data.data.merchants.map((item: any, index: any) => {
+            return {
+              ...item,
+              refresh: getMerchantsData,
+            };
+          }),
+        );
+        setLoading(false);
+      }
+    } catch (error) {
+      console.log(error);
+      setLoading(false);
     }
   }
   useEffect(() => {
@@ -34,7 +42,7 @@ export default function MerchantPage() {
         </p>
       </div>
       <div className=" mx-auto ">
-        <DataTable columns={columns} data={merchants} />
+        <DataTable columns={columns} data={merchants} loading={loading} />
       </div>
     </>
   );

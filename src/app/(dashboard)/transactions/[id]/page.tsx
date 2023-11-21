@@ -1,23 +1,33 @@
 "use client";
-import { Payment, columns, withdrawalTableColumn } from "./columns";
+import { Payment, columns, withdrawalTableColumn } from "../columns";
 import { DataTable } from "@components/ui/data-table";
 import { Metadata } from "next";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-
 /* 
 export const metadata: Metadata = {
   title: "Transactions | Ozura Pay",
   description: "Transactions | Ozura Pay",
 };
  */
-function TransactionsTable({ transactionsData, withdrawalData, loading }: any) {
+
+function TransactionsTable({
+  transactionsData,
+  withdrawalData,
+  loading,
+  widgetId,
+}: any) {
   return (
     <>
       <div className="flex items-center justify-between space-y-2">
         <h2 className="text-2xl md:text-3xl font-bold tracking-tight">
           Transactions
+        </h2>
+      </div>
+      <div className="flex items-center justify-between space-y-2 pt-4">
+        <h2 className="text-sm md:text-sm text-gray-500	 ">
+          {widgetId && <>Showing Transaction for Widget ID: {widgetId}</>}
         </h2>
       </div>
       <Tabs defaultValue="deposit" className="w-full">
@@ -43,7 +53,7 @@ function TransactionsTable({ transactionsData, withdrawalData, loading }: any) {
     </>
   );
 }
-export default function DemoPage() {
+export default function DemoPage({ params }: any) {
   // const data = await getData();
   const [transactionsData, setTransactionsData] = useState<any>([]);
   const [withdrawalData, setWithdrawalData] = useState<any>([]);
@@ -52,7 +62,8 @@ export default function DemoPage() {
   const handleTabChange = (tab: any) => {
     setActiveTab(tab);
   };
-
+  const widgetId = params.id;
+  console.log(widgetId, "widgetId");
   const getTransactions = async () => {
     try {
       setLoading(true);
@@ -68,7 +79,10 @@ export default function DemoPage() {
       console.log("API response:", res);
       if (res.status === 200) {
         const payments = res.data
-          .filter((item: any) => item.merchantId === user?.id)
+          .filter(
+            (item: any) =>
+              item.merchantId === user?.id && item?.widgetId === widgetId,
+          )
           .filter((item: any) => item.status === "COMPLETED")
           .map((item: any, index: any) => {
             return {
@@ -93,6 +107,7 @@ export default function DemoPage() {
               completedAt: new Date(item.completedAt).toUTCString(),
               email: item.email,
               name: item.name,
+              widgetId: item.widgetId,
             };
           });
 
@@ -140,6 +155,7 @@ export default function DemoPage() {
         transactionsData={transactionsData}
         withdrawalData={withdrawalData}
         loading={loading}
+        widgetId={widgetId}
       />
     </>
   );

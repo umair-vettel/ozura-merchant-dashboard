@@ -194,8 +194,10 @@ const WalletsTable = (props: Props) => {
     // ...
   ];
   const [vaults, setVaults] = useState<any[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
   const getMerchantWallets = async () => {
     try {
+      setLoading(true);
       const path = `${process.env.NEXT_PUBLIC_API_URL}/users/getAllVaults`;
       const res = await AuthPost(path, {});
       if (res.status == 200) {
@@ -207,10 +209,12 @@ const WalletsTable = (props: Props) => {
             index: index + 1,
           })),
         );
+        setLoading(false);
         return;
       }
     } catch (error) {
       console.log(error);
+      setLoading(false);
     }
   };
   useEffect(() => {
@@ -222,7 +226,11 @@ const WalletsTable = (props: Props) => {
       <div className="flex md:justify-end md:mt-[-60px]">
         <AddWalletModal refreshData={getMerchantWallets} />
       </div>
-      <DataTable columns={vaultsColumns} data={vaults as any} />
+      <DataTable
+        columns={vaultsColumns}
+        data={vaults as any}
+        loading={loading}
+      />
     </div>
   );
 };

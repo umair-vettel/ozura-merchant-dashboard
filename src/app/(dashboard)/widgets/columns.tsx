@@ -44,15 +44,24 @@ export const columns: ColumnDef<Payment>[] = [
   {
     accessorKey: "payment_id",
     header: "Payment ID",
+    cell: ({ row }) => {
+      const plink: string = row.getValue("payment_id");
+
+      return (
+        <Link href={`transactions/${plink}`} className="font-medium">
+          {plink}
+        </Link>
+      );
+    },
   },
 
   {
     accessorKey: "item_name",
     header: "Item Name",
   },
-  {
+  /*   {
     accessorKey: "item_image",
-    // header: "Item Image",
+
     header: ({ column }) => <div className="text-center">Item Image</div>,
     cell: ({ row }) => {
       const imageLink: string = row.getValue("item_image");
@@ -67,7 +76,7 @@ export const columns: ColumnDef<Payment>[] = [
         />
       );
     },
-  },
+  }, */
 
   {
     accessorKey: "item_cost",
