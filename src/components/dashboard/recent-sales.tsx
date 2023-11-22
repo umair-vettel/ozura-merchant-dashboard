@@ -3,6 +3,11 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 export function RecentSales({ data }: any) {
   return (
     <div className="space-y-8 ">
+      {data?.length === 0 && (
+        <div className="text-center text-sm text-muted-foreground">
+          No transactions recorded.
+        </div>
+      )}
       {data?.map((item: any) => (
         <>
           <div className="flex items-center">

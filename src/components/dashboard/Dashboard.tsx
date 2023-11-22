@@ -281,7 +281,9 @@ export default function Dashboard() {
         </div>
 
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-8">
-          <Card className="col-span-5">
+          <Card
+            className={stats?.totalRevenue > 0 ? "col-span-5" : "col-span-8"}
+          >
             <CardHeader className="flex flex-row justify-between items-center">
               <CardTitle>Recent Transactions</CardTitle>
 
@@ -305,12 +307,14 @@ export default function Dashboard() {
               <RecentSales data={stats.last5Transactions} />
             </CardContent>
           </Card>
-          <div className="col-span-2 md:col-span-3 lg:col-span-3 space-y-4">
-            <CurrencyPieChart
-              data={stats?.paymentMethodPercentages}
-              totalRevenue={stats?.totalRevenue.toFixed(4)}
-            />
-          </div>
+          {stats?.totalRevenue > 0 && (
+            <div className="col-span-2 md:col-span-3 lg:col-span-3 space-y-4">
+              <CurrencyPieChart
+                data={stats?.paymentMethodPercentages}
+                totalRevenue={stats?.totalRevenue.toFixed(4)}
+              />
+            </div>
+          )}
         </div>
       </div>
     </>
